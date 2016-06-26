@@ -106,6 +106,15 @@ return array(
 				*/
 			),
 		),
+                'clientScript'=>array(
+                    'packages'=>array(
+                        'jquery'=>array(
+                            'baseUrl'=>'https://ajax.googleapis.com/ajax/libs/jquery/',
+                            'js'=>array('1.12.3/jquery.min.js'),
+                        )
+                    ),
+                ),
+                  
 	),
 
 	// application-level parameters that can be accessed
