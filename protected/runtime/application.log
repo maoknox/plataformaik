@@ -166,3 +166,21 @@ Stack trace:
 REQUEST_URI=/pruebarbac/dashboard.html
 HTTP_REFERER=http://localhost/pruebarbac/rbac
 ---
+2016/06/25 21:53:14 [error] [exception.CException] CException: CAssetManager.basePath "/var/www/html/plataformaik/assets" es inválido. Asegúrese que el directorio exista y tenga permisos de escritura por el proceso que corre el servidor Web. in /var/www/html/plataformaik/vendor/square1-io/yii-framework/web/CAssetManager.php:138
+Stack trace:
+#0 /var/www/html/plataformaik/vendor/square1-io/yii-framework/web/CAssetManager.php(123): CAssetManager->setBasePath('/var/www/html/p...')
+#1 /var/www/html/plataformaik/vendor/square1-io/yii-framework/web/CAssetManager.php(217): CAssetManager->getBasePath()
+#2 /var/www/html/plataformaik/protected/modules/rbacui/RbacuiModule.php(34): CAssetManager->publish('/var/www/html/p...', false, -1, true)
+#3 /var/www/html/plataformaik/protected/modules/rbacui/RbacuiModule.php(44): RbacuiModule->getAssetsUrl()
+#4 /var/www/html/plataformaik/protected/modules/rbacui/RbacuiModule.php(18): RbacuiModule->registerAssets()
+#5 /var/www/html/plataformaik/vendor/square1-io/yii-framework/base/CModule.php(90): RbacuiModule->init()
+#6 /var/www/html/plataformaik/vendor/square1-io/yii-framework/YiiBase.php(206): CModule->__construct('rbac', NULL, Array)
+#7 /var/www/html/plataformaik/vendor/square1-io/yii-framework/base/CModule.php(282): YiiBase::createComponent(Array, 'rbac', NULL, Array)
+#8 /var/www/html/plataformaik/vendor/square1-io/yii-framework/web/CWebApplication.php(337): CModule->getModule('rbac')
+#9 /var/www/html/plataformaik/vendor/square1-io/yii-framework/web/CWebApplication.php(276): CWebApplication->createController('')
+#10 /var/www/html/plataformaik/vendor/square1-io/yii-framework/web/CWebApplication.php(141): CWebApplication->runController('rbac')
+#11 /var/www/html/plataformaik/vendor/square1-io/yii-framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /var/www/html/plataformaik/index.php(13): CApplication->run()
+#13 {main}
+REQUEST_URI=/plataformaik/rbac
+---
