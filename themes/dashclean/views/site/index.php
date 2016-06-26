@@ -76,11 +76,7 @@
             </div>
         </div>
     </section>
-
-
     <section class="page container cont">
-       
-        
             <div  style="text-align: center; ">
                 <div class="span4">
                     <div class="box">
@@ -103,35 +99,6 @@
             
         
     </section>
-
-<div class="some-container">
-
-  <div>hello data 1</div>
-  <div>
-    hello data 2
-    hello data 2
-  </div>
-  <div>
-    hello data 3
-    hello data 3
-    hello data 3
-  </div>
-
- <div>
-    hello data 4
-    hello data 4
-    hello data 4
-    hello data 4
-  </div>
-  <div>
-    hello data 5
-    hello data 5
-    hello data 5
-    hello data 5
-    hello data 5
-  </div>
-</div>
-
 <script>
 //  $(document).ready(function(){
 //      $('.some-container').waterfall({
