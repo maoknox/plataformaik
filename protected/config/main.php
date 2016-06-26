@@ -81,7 +81,7 @@ return array(
 		
 		'db'=>array(
                     'tablePrefix'=>'',
-                    'connectionString' => 'pgsql:host=localhost;port=5432;dbname=pruebarbac',
+                    'connectionString' => 'pgsql:host=localhost;port=5432;dbname=plataformaik',
                     'username'=>'k80014abr13',
                     'password'=>'a564de63c2d0da68cf47586ee05984d7',
                     'charset'=>'UTF8',
