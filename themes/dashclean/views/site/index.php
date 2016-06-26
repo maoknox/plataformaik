@@ -1,4 +1,4 @@
-<?php Yii::app()->clientScript->registerScriptFile('https://zeptojs.com/zepto.min.js',CClientScript::POS_END);?>
+<?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery/zepto.min.js',CClientScript::POS_END);?>
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery/waterfall.min.js',CClientScript::POS_END);?>  
 <?php //Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/nested.css', CClientScript::POS_HEAD);?>
                   <div class="body-nav body-nav-horizontal body-nav-fixed">
