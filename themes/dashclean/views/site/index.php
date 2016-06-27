@@ -1,6 +1,6 @@
-<?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery/zepto.min.js',CClientScript::POS_END);?>
-<?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery/waterfall.min.js',CClientScript::POS_END);?>  
-<?php //Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/nested.css', CClientScript::POS_HEAD);?>
+<?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/freewall.js',CClientScript::POS_HEAD);?>
+<?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/centering.js',CClientScript::POS_HEAD);?>  
+<?php Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/freewall.css');?>
                   <div class="body-nav body-nav-horizontal body-nav-fixed">
                         <div class="container">
                             <ul>
@@ -77,6 +77,10 @@
         </div>
     </section>
     <section class="page container cont">
+            
+    </section>
+    <div id="freewall" class="free-wall">			
+        <div class="brick">
             <div  style="text-align: center; ">
                 <div class="span4">
                     <div class="box">
@@ -96,14 +100,124 @@
                     </div>
                 </div>
             </div>
-            
-        
-    </section>
-<script>
-//  $(document).ready(function(){
-//      $('.some-container').waterfall({
-//        colMinWidth: 150,
-//        autoresize: true
-//      });
-//  })
-</script>
+        </div>
+        <div class="brick">
+               <div  style="text-align: center; ">
+                <div class="span6">
+                    <div class="box">
+                        <div class="box-header">
+                            <i class="icon-bookmark"></i>
+                            <h5>Módulo 1</h5>
+                        </div>
+                        <div class="box-content">
+                            <div class="btn-group-box">
+                                <button class="btn-box"><i class="icon-dashboard icon-large"></i><br/>Acceso a algo pero bieeeeeeeen largo</button>
+                                <button class="btn"><i class="icon-user icon-large"></i><br/>Account</button>
+                                <button class="btn"><i class="icon-search icon-large"></i><br/>Search</button>
+                                <button class="btn"><i class="icon-list-alt icon-large"></i><br/>Reports</button>
+                                <button class="btn"><i class="icon-bar-chart icon-large"></i><br/>Charts</button>
+                                <button class="btn"><i class="icon-list-alt icon-large"></i><br/>Reports</button>
+                                <button class="btn"><i class="icon-bar-chart icon-large"></i><br/>Charts</button>
+                                <button class="btn"><i class="icon-list-alt icon-large"></i><br/>Reports</button>
+                                <button class="btn"><i class="icon-bar-chart icon-large"></i><br/>Charts</button>
+                                <button class="btn"><i class="icon-list-alt icon-large"></i><br/>Reports</button>
+                                <button class="btn"><i class="icon-bar-chart icon-large"></i><br/>Charts</button>
+                                <button class="btn"><i class="icon-list-alt icon-large"></i><br/>Reports</button>
+                                <button class="btn"><i class="icon-bar-chart icon-large"></i><br/>Charts</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	<div class="brick">
+            <div  style="text-align: center; ">
+                <div class="span4">
+                    <div class="box">
+                        <div class="box-header">
+                            <i class="icon-bookmark"></i>
+                            <h5>Módulo 1</h5>
+                        </div>
+                        <div class="box-content">
+                            <div class="btn-group-box">
+                                <button class="btn-box"><i class="icon-dashboard icon-large"></i><br/>Acceso a algo pero bieeeeeeeen largo</button>
+                                <button class="btn"><i class="icon-user icon-large"></i><br/>Account</button>
+                                <button class="btn"><i class="icon-search icon-large"></i><br/>Search</button>
+                                <button class="btn"><i class="icon-list-alt icon-large"></i><br/>Reports</button>
+                                <button class="btn"><i class="icon-bar-chart icon-large"></i><br/>Charts</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>	
+        <div class="brick">
+            <div  style="text-align: center; ">
+                <div class="span4">
+                    <div class="box">
+                        <div class="box-header">
+                            <i class="icon-bookmark"></i>
+                            <h5>Módulo 1</h5>
+                        </div>
+                        <div class="box-content">
+                            <div class="btn-group-box">
+                                <button class="btn-box"><i class="icon-dashboard icon-large"></i><br/>Acceso a algo pero bieeeeeeeen largo</button>
+                                <button class="btn"><i class="icon-user icon-large"></i><br/>Account</button>
+                                <button class="btn"><i class="icon-search icon-large"></i><br/>Search</button>
+                                <button class="btn"><i class="icon-list-alt icon-large"></i><br/>Reports</button>
+                                <button class="btn"><i class="icon-bar-chart icon-large"></i><br/>Charts</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="brick">
+            <div  style="text-align: center; ">
+                <div class="span4">
+                    <div class="box">
+                        <div class="box-header">
+                            <i class="icon-bookmark"></i>
+                            <h5>Módulo 1</h5>
+                        </div>
+                        <div class="box-content">
+                            <div class="btn-group-box">
+                                <button class="btn-box"><i class="icon-dashboard icon-large"></i><br/>Acceso a algo pero bieeeeeeeen largo</button>
+                                <button class="btn"><i class="icon-user icon-large"></i><br/>Account</button>
+                                <button class="btn"><i class="icon-search icon-large"></i><br/>Search</button>
+                                <button class="btn"><i class="icon-list-alt icon-large"></i><br/>Reports</button>
+                                <button class="btn"><i class="icon-bar-chart icon-large"></i><br/>Charts</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript">
+
+		/*	var temp = "<div class='brick' style='width:{width}px;'><img src='i/photo/{index}.jpg' width='100%'></div>";
+			var w = 1, h = 1, html = '', limitItem = 49;
+			for (var i = 0; i < limitItem; ++i) {
+				w = 1 + 3 * Math.random() << 0;
+				html += temp.replace(/\{width\}/g, w*150).replace("{index}", i + 1);
+			}
+			$("#freewall").html(html);*/
+
+			var wall = new Freewall("#freewall");
+			wall.reset({
+				selector: '.brick',
+				animate: true,
+				cellW: 150,
+				cellH: 'auto',
+				onResize: function() {
+					wall.fitWidth();
+				}
+			});
+			wall.fitWidth();
+			var images = wall.container.find('.brick');
+			images.find('img').load(function() {
+				wall.fitWidth();
+			});
+
+		</script>
