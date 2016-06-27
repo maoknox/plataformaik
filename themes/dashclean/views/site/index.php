@@ -1,6 +1,6 @@
-<?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/freewall.js',CClientScript::POS_HEAD);?>
-<?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/centering.js',CClientScript::POS_HEAD);?>  
 <?php Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/freewall.css');?>
+<?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/freewall.js',CClientScript::POS_BEGIN);?>
+<?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/centering.js',CClientScript::POS_BEGIN);?>  
                   <div class="body-nav body-nav-horizontal body-nav-fixed">
                         <div class="container">
                             <ul>
@@ -78,7 +78,7 @@
     </section>
     <section class="page container cont">
             
-    </section>
+    
     <div id="freewall" class="free-wall">			
         <div class="brick">
             <div  style="text-align: center; ">
@@ -194,6 +194,7 @@
             </div>
         </div>
     </div>
+ </section>       
 <script type="text/javascript">
 
 		/*	var temp = "<div class='brick' style='width:{width}px;'><img src='i/photo/{index}.jpg' width='100%'></div>";
