@@ -8,7 +8,7 @@
 return array(
         'timeZone' => 'America/Bogota',
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'My Web Application',
+	'name'=>'Plataforma IK',
         'theme'=>'dashclean',
         'language'=>'es',
 	// preloading 'log' component

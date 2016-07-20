@@ -8,7 +8,7 @@
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>                
 
         <link href="<?php echo Yii::app()->baseUrl; ?>/css/customize-template.css" type="text/css" media="screen, projection" rel="stylesheet" />
-   
+        <link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.css" />
         <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>        
          <?php if(!Yii::app()->user->isGuest):?>                
             <?php
@@ -36,7 +36,7 @@
                     <ul class="nav pull-right">
                         <?php if(!Yii::app()->user->isGuest):?>
                              <?php echo '<li>'.CHtml::link("Logout",array('logout')).'</li>';?>
-                             <li class="dropdown">
+<!--                             <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mi cuenta
                                 <b class="caret hidden-phone"></b>
                             </a>
@@ -48,7 +48,7 @@
                                     <a href="demo-horizontal-nav.html">Cambiar Clave</a>
                                 </li>                                                                
                             </ul>
-                        </li>
+                        </li>-->
                         <?php endif;?>
                         <?php if(Yii::app()->user->isGuest):?>
                             <?php echo '<li>'.CHtml::link("Login",array('/site/login')).'</li>';?>

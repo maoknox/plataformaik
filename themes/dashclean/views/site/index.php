@@ -31,14 +31,13 @@
             <div class="box-content">
                 <div class="btn-group-box">
                     <button class="btn"><i class="icon-dashboard icon-large"></i><br/>Mis vehículos</button>
-                    <button class="btn"><i class="icon-map-marker icon-large"></i><br/>Ubicar vehículo</button>
+                    <button class="btn" onclick="location.href='<?php echo Yii::app()->baseUrl; ?>/avl/searchVehicle'"><i class="icon-dashboard icon-large"></i> Ubicar vehículo</button>
                 </div>
             </div>
         </div>                           
     </div>
 </div>
 
-    
     <?php endif;?>
  </section>  
 
