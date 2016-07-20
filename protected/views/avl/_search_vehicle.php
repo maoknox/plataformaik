@@ -38,7 +38,8 @@ function creaPunto(){
              //$("#velocidad").html(data.velocidad);
              //alert(punto);
              map.removeLayer(puntoUbic);	
-             puntoUbic=L.marker(punto);             
+             puntoUbic=L.marker(punto);
+             map.panTo(new L.LatLng(data.latitud, data.longitud));
              puntoUbic.addTo(map).bindPopup("<b>"+data.time+"</b><br />Posición actual.").openPopup();//.openPopup();	
        },
         error: function(xhr, ajaxOptions, thrownError) {
