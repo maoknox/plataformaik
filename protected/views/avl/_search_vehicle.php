@@ -9,7 +9,6 @@
         </div>
  </section>  
 <script src="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.js"></script>
-<?php echo $localization->latitude?>
 <script>
 var map = L.map('map').setView([<?php echo $localization->latitude?>,<?php echo $localization->longitude?>], 15);
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFva25veCIsImEiOiJmcGJNR09jIn0.d8dHV-Ucm_dxJRbt50d1wA', {
