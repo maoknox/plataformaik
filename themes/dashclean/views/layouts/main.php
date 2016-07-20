@@ -35,7 +35,7 @@
                 <div id="app-nav-top-bar" class="nav-collapse">                   
                     <ul class="nav pull-right">
                         <?php if(!Yii::app()->user->isGuest):?>
-                             <?php echo '<li>'.CHtml::link("Logout",array('logout')).'</li>';?>
+                             <?php echo '<li>'.CHtml::link("Logout",array('site/logout')).'</li>';?>
 <!--                             <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mi cuenta
                                 <b class="caret hidden-phone"></b>
