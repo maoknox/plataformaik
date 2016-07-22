@@ -1,4 +1,4 @@
-<section class="page container cont">
+
     
         <div class="row">
             <div >
@@ -7,7 +7,7 @@
                 </div>
             </div>
         </div>
- </section>  
+ 
 <script src="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.js"></script>
 <script>
 var map = L.map('map').setView([<?php echo $localization->latitude?>,<?php echo $localization->longitude?>], 15);
