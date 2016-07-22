@@ -1,6 +1,3 @@
-
-
-<section class="page container cont">
     <?php if(Yii::app()->user->isGuest):?>
         <div class="row">
             <div >
@@ -39,5 +36,5 @@
 </div>
 
     <?php endif;?>
- </section>  
+
 
