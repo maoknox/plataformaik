@@ -11,7 +11,7 @@
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>                
 
         <link href="<?php echo Yii::app()->baseUrl; ?>/css/customize-template.css" type="text/css" media="screen, projection" rel="stylesheet" />
-        <link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.css" />
+<!--        <link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.css" />-->
         <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>        
          <?php if(!Yii::app()->user->isGuest):?>                
             <?php

@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.css" />
     
         <div class="row">
@@ -7,7 +9,7 @@
                 </div>
             </div>
         </div>
- 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
 <script src="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.js"></script>
 <script>
 var map = L.map('map').setView([<?php echo $localization->latitude?>,<?php echo $localization->longitude?>], 15);
