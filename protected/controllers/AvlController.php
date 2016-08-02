@@ -17,6 +17,18 @@ class AvlController extends Controller
             ));            
 	}
         /**
+	 * Llama a vista que muestra punto.
+	 */
+	public function actionSearchVehiclePartial()
+	{
+            $pk=1;
+            $sql="SELECT * FROM localization WHERE id_entity=:id_entity order by localization_time desc";
+            $localization=  Localization::model()->findBySql($sql,array(":id_entity"=>$pk));
+            $this->renderPartial("_search_vehicle_iframe",array(
+                'localization'=>$localization
+            ));            
+	}
+        /**
 	 * Busca última localización y devuelve array con longitud y latitud.
 	 */
         public function actionMuestraPunto(){
