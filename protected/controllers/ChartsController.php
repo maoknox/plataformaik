@@ -13,6 +13,38 @@ class ChartsController extends Controller
             
             $this->render("_dynamic_charts");            
 	}
+         /**
+	 * Llama a vista que muestra gráfico dinámico por render partial.
+	 */
+	public function actionMuestraTemperatura()
+	{
+            
+            $this->renderPartial("_dynamic_charts_iframe");            
+	}
+         /**
+	 * Llama a vista que muestra gráfico dinámico por render partial.
+	 */
+	public function actionMuestraHumedad()
+	{
+            
+            $this->renderPartial("_dynamicchart_humedad_iframe");            
+	}
+         /**
+	 * Llama a vista que muestra gráfico dinámico por render partial.
+	 */
+	public function actionMuestraConductividad()
+	{
+            
+            $this->renderPartial("_dynamicchart_conductividad_iframe");            
+	}
+         /**
+	 * Llama a vista que muestra gráfico dinámico por render partial.
+	 */
+	public function actionMuestraPresion()
+	{
+            
+            $this->renderPartial("_dynamiccharts_presion_iframe");            
+	}
         /*
          * Muestra array de puntos de un rango de fecha
          */
@@ -45,5 +77,13 @@ class ChartsController extends Controller
             $d=mt_rand(0,30);                
             $time=strtotime ( date("Y-m-d H:i:s") )*1000;
             echo CJSON::encode(array("temp"=>$d,"time"=>$time));           
+        }
+        /*
+         * Muestra array de puntos de un rango de fecha
+         */
+        public function actionMuestraPuntoHumedadCond(){
+            $d=0;
+            $d=mt_rand(0,100);
+            echo CJSON::encode(array("humedad"=>$d));           
         }
 }
