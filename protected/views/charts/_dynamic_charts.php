@@ -188,27 +188,19 @@ $('#ph').highcharts({
         },
 
         series: [{
-            name: 'Speed',
+            name: 'PH',
             data: [7.5],
             tooltip: {
-                valueSuffix: ' km/h'
+                valueSuffix: ' '
             }
         }]
 
     },function (chart) {
-        if (!chart.renderer.forExport){
-            setInterval(function (){
-                var point = chart.series[0].points[0],
-                    newVal,
-                    inc = Math.round((Math.random() - 0.5) * 5);
-
-                newVal = point.y + inc;
-                if (newVal < 0 || newVal > 200) {
-                    newVal = point.y - inc;
-                }
-
+        if (!chart.renderer.forExport) {
+            setInterval(function (){  
+                var point = chart.series[0].points[0]
+                var newVal = Math.floor((Math.random() * 14));
                 point.update(newVal);
-
             }, 3000);
         }
     });
