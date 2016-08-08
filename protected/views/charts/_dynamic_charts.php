@@ -113,7 +113,7 @@ $('#ph').highcharts({
         },
 
         title: {
-            text: null
+            text: "PH"
         },
 
         pane: {
