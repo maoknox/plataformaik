@@ -7,7 +7,12 @@
         <script src="<?php echo Yii::app()->baseUrl?>/js/charts/justgage.js"></script>
         
         <script type="text/javascript" src="<?php echo Yii::app()->baseUrl?>/js/jquery.thermometer.js"></script>
-        
+        <div class="row " >
+            <div class="span-6 img-rounded" style="border: 1px solid #888888;" >
+                BUTTONS
+            </div> 
+        </div>
+<hr>        
 <div class="row">
     <div class="span-6 img-rounded" style="border: 1px solid #888888;" >
         <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto;width:400px"></div>
@@ -31,8 +36,7 @@
         
     </div>
 </div>
-        <hr>
-<div class="row img-rounded"  style="border: 1px solid #888888;" >BUTTONS</div>
+     
 
 <script>
 $(function () {
@@ -170,14 +174,14 @@ $('#ph').highcharts({
             },
             plotBands: [{
                 from: 0,
-                to: 6,
+                to: 7,
                 color: '#55BF3B' // green
             }, {
-                from: 6,
-                to: 7,
+                from: 7,
+                to: 8,
                 color: '#DDDF0D' // yellow
             }, {
-                from: 7,
+                from: 8,
                 to: 14,
                 color: '#DF5353' // red
             }]
