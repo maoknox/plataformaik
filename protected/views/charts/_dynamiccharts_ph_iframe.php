@@ -2,13 +2,17 @@
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
-
-<div id="ph" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto"></div>
+ <div id="ph" style="min-width: 210px; max-width: 300; height: 200px; margin: 0 auto" >bla</div>
+        <div class="span-6 img-rounded" style="border: 1px solid #888888;  padding: 20px 20px 20px 20px;" >
+            <div><div><span style=" background-color: #55BF3B">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> -Ácido </div></div>
+            <div><div><span style=" background-color: #DDDF0D">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> -Neutro</div></div>
+            <div><div><span style=" background-color: #DF5353">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> -Alcalino</div></div>        
+        </div>
 
 <script>
 $(function () {
 
-    $('#ph').highcharts({
+   $('#ph').highcharts({
 
         chart: {
             type: 'gauge',
@@ -80,14 +84,14 @@ $(function () {
             },
             plotBands: [{
                 from: 0,
-                to: 6,
+                to: 7,
                 color: '#55BF3B' // green
             }, {
-                from: 6,
-                to: 7,
+                from: 7,
+                to: 8,
                 color: '#DDDF0D' // yellow
             }, {
-                from: 7,
+                from: 8,
                 to: 14,
                 color: '#DF5353' // red
             }]
@@ -101,9 +105,7 @@ $(function () {
             }
         }]
 
-    },
-    // Add some life
-    function (chart) {
+    },function (chart) {
         if (!chart.renderer.forExport) {
             setInterval(function () {
                 var point = chart.series[0].points[0],
