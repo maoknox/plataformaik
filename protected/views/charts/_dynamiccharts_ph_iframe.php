@@ -23,7 +23,7 @@ $(function () {
         },
 
         title: {
-            text: null
+            text: "PH"
         },
 
         pane: {
