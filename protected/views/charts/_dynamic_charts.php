@@ -195,7 +195,7 @@ $('#ph').highcharts({
             }
         }]
 
-    },function (chart){
+    },function (chart) {
         if (!chart.renderer.forExport){
             setInterval(function () {
                 var point = chart.series[0].points[0],
