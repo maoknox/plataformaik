@@ -8,7 +8,7 @@ class ChartsController extends Controller
         /**
 	 * Llama a vista que muestra gráfico dinámico.
 	 */
-	public function actionMuestraCharts()
+	public function actionIndex()
 	{
             
             $this->render("_dynamic_charts");            
@@ -40,10 +40,10 @@ class ChartsController extends Controller
          /**
 	 * Llama a vista que muestra gráfico dinámico por render partial.
 	 */
-	public function actionMuestraPresion()
+	public function actionMuestraPh()
 	{
             
-            $this->renderPartial("_dynamiccharts_presion_iframe");            
+            $this->renderPartial("_dynamiccharts_ph_iframe");            
 	}
         /*
          * Muestra array de puntos de un rango de fecha
