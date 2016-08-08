@@ -197,7 +197,7 @@ $('#ph').highcharts({
 
     },function (chart) {
         if (!chart.renderer.forExport) {
-            setInterval(function (){  
+            setInterval(function () {  
                 var point = chart.series[0].points[0]
                 var newVal = Math.floor((Math.random() * 14));
                 point.update(newVal);
