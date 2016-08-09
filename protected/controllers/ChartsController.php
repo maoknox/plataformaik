@@ -66,7 +66,7 @@ class ChartsController extends Controller
         public function actionMuestraPuntoTemperatura(){ 
             $dataTemperatura=  Test::model()->consultaPuntoTemperatura();
             $time=strtotime ( $dataTemperatura["date_test"] )*1000;
-            echo CJSON::encode(array("temp"=>$dataTemperatura["temperatura"],"time"=>$time));
+            echo CJSON::encode(array("temp"=>(double)$dataTemperatura["temperatura"],"time"=>$time));
         }
         /*
          * Muestra última medición de ph
