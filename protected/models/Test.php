@@ -115,7 +115,7 @@ class Test extends CActiveRecord
          */
         public function consultaHistoricoTemperatura(){
             $connect=Yii::app()->db;
-            $sql="select date_test, temperatura from test order by date_test desc limit 21";
+            $sql="select date_test, temperatura from test order by date_test desc limit 5";
             $query=$connect->createCommand($sql);
             $read=$query->query();
             $res=$read->readAll();

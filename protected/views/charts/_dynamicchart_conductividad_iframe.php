@@ -37,6 +37,7 @@
                     async:true,
                     //beforeSend:function (){Loading.show();},
                     success: function(dataPointJson){
+                        console.debug(dataPointJson.conductividad);
                         if(timeCond!==dataPointJson.time){
                             timeCond=dataPointJson.time
                             g1.refresh(dataPointJson.conductividad)
