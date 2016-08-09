@@ -14,8 +14,9 @@ $(function () {
                 useUTC: false
             }
         });
-
+        var timeTemp;
         $('#container').highcharts({
+            
             chart: {
                 type: 'spline',
                 animation: Highcharts.svg, // don't animate in old IE
@@ -32,9 +33,12 @@ $(function () {
                                 async:false,
                                 //beforeSend:function (){Loading.show();},
                                 success: function(dataPointJson){  
-                                    var x = dataPointJson.time, // current time
-                                    y = dataPointJson.temp;
-                                    series.addPoint([x, y], true, true);
+                                    if(timeTemp!==dataPointJson.time){
+                                        var x = dataPointJson.time, // current time
+                                        y = dataPointJson.temp;
+                                        series.addPoint([x, y], true, true);
+                                        time=dataPointJson.time;
+                                    }
                                     console.debug(dataPointJson);
                                 },
                                 error:function (err){
@@ -81,23 +85,23 @@ $(function () {
                 name: 'T vs H',
                 data: (function () {
                     // generate an array of random data
-                    var data = [],
-                        time = (new Date()).getTime(),
-                        i=-19;
+                    var data = []
                     $.ajax({
-                        url: "muestraArrayPuntos",                        
+                        url: "muestraArrayTemperatura",                        
                         dataType:"json",
                         type: "post",
                         async:false,
                         //beforeSend:function (){Loading.show();},
                         success: function(dataJson){  
+                            
                            $.each(dataJson,function(key,value){ 
-                                data.push({
+                               console.debug(value.time+" "+value.temp+" "+value.tempbd);
+                                timeTemp=value.time;
+                                data.push({                                 
                                     //x: time + i * 1000,
                                     x: value.time,
                                     y: value.temp
-                                });
-                                i++;
+                                });                              
                            });
                            
                         },

@@ -46,6 +46,31 @@ class ChartsController extends Controller
             $this->renderPartial("_dynamiccharts_ph_iframe");            
 	}
         /*
+         * Muestra temperaturas
+         */
+        public function actionMuestraArrayTemperatura(){ 
+            $modeloTemperatura=  Test::model()->consultaTemperatura();
+            $data=array();
+            foreach($modeloTemperatura as $dataTemperatura){
+                $time=strtotime ( $dataTemperatura["date_test"] )*1000;
+                $data[]=array("temp"=>(double)$dataTemperatura["temperatura"],"time"=>$time,"tempbd"=>$dataTemperatura["temperatura"]);
+            }           
+           echo CJSON::encode($data);           
+        }
+        /*
+         * Muestra última medición de temperatura
+         */
+        public function actionMuestraPuntoTemperatura(){ 
+            $modeloTemperatura=  Test::model()->consultaTemperatura();
+            $data=array();
+            foreach($modeloTemperatura as $dataTemperatura){
+                $time=strtotime ( $dataTemperatura["date_test"] )*1000;
+                $data[]=array("temp"=>(double)$dataTemperatura["temperatura"],"time"=>$time,"tempbd"=>$dataTemperatura["temperatura"]);
+            }           
+           echo CJSON::encode($data);           
+        }
+        
+        /*
          * Muestra array de puntos de un rango de fecha
          */
         public function actionMuestraArrayPuntos(){ 

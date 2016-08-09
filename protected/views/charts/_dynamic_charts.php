@@ -207,7 +207,7 @@ $('#ph').highcharts({
 
 
 
-
+        var timeTemp;
         $('#container').highcharts({
             chart: {
                 type: 'spline',
@@ -219,15 +219,19 @@ $('#ph').highcharts({
                         var series = this.series[0];
                         setInterval(function () {                           
                             $.ajax({
-                                url: "muestraPunto",                        
+                                url: "muestraPuntoTemperatura",
+                                //url: "muestraPunto",                        
                                 dataType:"json",
                                 type: "post",
                                 async:false,
                                 //beforeSend:function (){Loading.show();},
                                 success: function(dataPointJson){  
-                                    var x = dataPointJson.time, // current time
-                                    y = dataPointJson.temp;
-                                    series.addPoint([x, y], true, true);
+                                    if(timeTemp!==dataPointJson.time){
+                                        var x = dataPointJson.time, // current time
+                                        y = dataPointJson.temp;
+                                        series.addPoint([x, y], true, true);
+                                        time=dataPointJson.time;
+                                    }
                                     console.debug(dataPointJson);
                                 },
                                 error:function (err){
@@ -277,6 +281,7 @@ $('#ph').highcharts({
                         time = (new Date()).getTime(),
                         i=-19;
                     $.ajax({
+                        //url: "muestraArrayTemperatura",    
                         url: "muestraArrayPuntos",                        
                         dataType:"json",
                         type: "post",
@@ -284,6 +289,7 @@ $('#ph').highcharts({
                         //beforeSend:function (){Loading.show();},
                         success: function(dataJson){  
                            $.each(dataJson,function(key,value){ 
+                                timeTemp=value.time;
                                 data.push({
                                     //x: time + i * 1000,
                                     x: value.time,
