@@ -7,11 +7,11 @@
         <script src="<?php echo Yii::app()->baseUrl?>/js/charts/justgage.js"></script>
         
         <script type="text/javascript" src="<?php echo Yii::app()->baseUrl?>/js/jquery.thermometer.js"></script>
-        <div class="row " >
+<!--        <div class="row " >
             <div class="span-6 img-rounded" style="border: 1px solid #888888;" >
                 BUTTONS
             </div> 
-        </div>
+        </div>-->
 <hr>        
 <div class="row">
     <div class="span-6 img-rounded" style="border: 1px solid #888888;" >
@@ -43,22 +43,40 @@ $(function () {
     $(document).ready(function () {
            var g1 = new JustGage({
           id: "g1",
-          value: getRandomInt(0, 100),
+          value: 0,
           min: 0,
           max: 100,
           title: "CONDUCTIVIDAD",
           label: "porciento"
         });
+        var timeCond="";
         setInterval(function() {
-          g1.refresh(getRandomInt(50, 100));         
-        }, 2500);
+            $.ajax({
+                    url: "muestraPuntoConductividad",                        
+                    dataType:"json",
+                    type: "post",
+                    async:true,
+                    //beforeSend:function (){Loading.show();},
+                    success: function(dataPointJson){
+                        if(timeCond!==dataPointJson.time){
+                            timeCond=dataPointJson.time
+                            g1.refresh(dataPointJson.conductividad)
+                        }
+                                                                   
+                    },
+                    error:function (err){
+                        console.debug(err);
+                    }
+                });
+          //g1.refresh(getRandomInt(50, 100));         
+        }, 3000);
         function blendColors(c0, c1, p) {
                 var f=parseInt(c0.slice(1),16),t=parseInt(c1.slice(1),16),R1=f>>16,G1=f>>8&0x00FF,B1=f&0x0000FF,R2=t>>16,G2=t>>8&0x00FF,B2=t&0x0000FF;
                 return "#"+(0x1000000+(Math.round((R2-R1)*p)+R1)*0x10000+(Math.round((G2-G1)*p)+G1)*0x100+(Math.round((B2-B1)*p)+B1)).toString(16).slice(1);
         }
 
         $('#humedad').thermometer( {
-                startValue: 33,
+                startValue: 0,
                 height: 150,
                 width: "100%",
                 bottomText: "0%",
@@ -74,16 +92,20 @@ $(function () {
                         return blendColors("#ff7700","#ff0000", value / 8); 
                 },
         });
+        var timeHumedad="";
         window.setInterval( function() {                                      
                 $.ajax({
-                    url: "muestraPuntoHumedadCond",                        
+                    url: "muestraPuntoHumedad",                        
                     dataType:"json",
                     type: "post",
-                    async:false,
+                    async:true,
                     //beforeSend:function (){Loading.show();},
-                    success: function(dataPointJson){                                                  
-                        y = dataPointJson.humedad;
-                        $('#humedad').thermometer( 'setValue', y );
+                    success: function(dataPointJson){
+                        if(timeHumedad!==dataPointJson.time){
+                            timeHumedad=dataPointJson.time
+                            y = dataPointJson.humedad;
+                            $('#humedad').thermometer( 'setValue', y );
+                        }
                                                                    
                     },
                     error:function (err){
@@ -102,7 +124,7 @@ $(function () {
                 useUTC: false
             }
         });
-$('#ph').highcharts({
+    $('#ph').highcharts({
 
         chart: {
             type: 'gauge',
@@ -189,7 +211,7 @@ $('#ph').highcharts({
 
         series: [{
             name: 'PH',
-            data: [7.5],
+            data: [0],
             tooltip: {
                 valueSuffix: ' '
             }
@@ -197,10 +219,27 @@ $('#ph').highcharts({
 
     },function (chart) {
         if (!chart.renderer.forExport) {
-            setInterval(function () {  
+            var timeph;
+            var ph;
+            setInterval(function () {
+                $.ajax({
+                    url: "muestraPuntoPh",
+                    //url: "muestraPunto",                        
+                    dataType:"json",
+                    type: "post",
+                    async:false,
+                    //beforeSend:function (){Loading.show();},
+                    success: function(dataPh){  
+                        ph=dataPh.ph;
+                        console.debug(dataPh);
+                    },
+                    error:function (err){
+                        console.debug(err);
+                    }
+                });
                 var point = chart.series[0].points[0]
                 var newVal = Math.floor((Math.random() * 14));
-                point.update(newVal);
+                point.update(ph);
             }, 3000);
         }
     });
@@ -281,15 +320,16 @@ $('#ph').highcharts({
                         time = (new Date()).getTime(),
                         i=-19;
                     $.ajax({
-                        //url: "muestraArrayTemperatura",    
-                        url: "muestraArrayPuntos",                        
+                        url: "muestraArrayTemperatura",    
+                        //url: "muestraArrayPuntos",                        
                         dataType:"json",
                         type: "post",
                         async:false,
                         //beforeSend:function (){Loading.show();},
                         success: function(dataJson){  
-                           $.each(dataJson,function(key,value){ 
-                                timeTemp=value.time;
+                            timeTemp=dataJson.punto;
+                           $.each(dataJson.puntos,function(key,value){ 
+                                
                                 data.push({
                                     //x: time + i * 1000,
                                     x: value.time,

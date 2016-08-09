@@ -27,7 +27,7 @@ $(function () {
                         var series = this.series[0];
                         setInterval(function () {                           
                             $.ajax({
-                                url: "muestraPunto",                        
+                                url: "muestraPuntoTemperatura",                        
                                 dataType:"json",
                                 type: "post",
                                 async:false,
@@ -37,7 +37,7 @@ $(function () {
                                         var x = dataPointJson.time, // current time
                                         y = dataPointJson.temp;
                                         series.addPoint([x, y], true, true);
-                                        time=dataPointJson.time;
+                                        timeTemp=dataPointJson.time;
                                     }
                                     console.debug(dataPointJson);
                                 },
@@ -93,10 +93,10 @@ $(function () {
                         async:false,
                         //beforeSend:function (){Loading.show();},
                         success: function(dataJson){  
-                            
-                           $.each(dataJson,function(key,value){ 
+                            timeTemp=dataJson.punto;
+                           $.each(dataJson.puntos,function(key,value){ 
                                console.debug(value.time+" "+value.temp+" "+value.tempbd);
-                                timeTemp=value.time;
+                                
                                 data.push({                                 
                                     //x: time + i * 1000,
                                     x: value.time,

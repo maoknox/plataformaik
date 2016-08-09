@@ -110,13 +110,63 @@ class Test extends CActiveRecord
 	{
 		return parent::model($className);
 	}
-        
-        public function consultaTemperatura(){
+        /*
+         * Consulta histórico de temperatura a lo sumo 21 datos para inicializar la gráfica
+         */
+        public function consultaHistoricoTemperatura(){
             $connect=Yii::app()->db;
-            $sql="select date_test, temperatura from test order by date_test desc limit 19";
+            $sql="select date_test, temperatura from test order by date_test desc limit 21";
             $query=$connect->createCommand($sql);
             $read=$query->query();
             $res=$read->readAll();
+            $read->close();
+            return $res;
+        }
+        /*
+         * Consulta última medición de temperatura
+         */
+        public function consultaPuntoTemperatura(){
+            $connect=Yii::app()->db;
+            $sql="select date_test, temperatura from test order by date_test desc limit 1";
+            $query=$connect->createCommand($sql);
+            $read=$query->query();
+            $res=$read->read();
+            $read->close();
+            return $res;
+        }
+         /*
+         * Consulta última medición de ph
+         */
+        public function consultaPuntoPh(){
+            $connect=Yii::app()->db;
+            $sql="select date_test, ph from test order by date_test desc limit 1";
+            $query=$connect->createCommand($sql);
+            $read=$query->query();
+            $res=$read->read();
+            $read->close();
+            return $res;
+        }
+         /*
+         * Consulta última medición de ph
+         */
+        public function consultaPuntoHumedad(){
+            $connect=Yii::app()->db;
+            $sql="select date_test, humedad from test order by date_test desc limit 1";
+            $query=$connect->createCommand($sql);
+            $read=$query->query();
+            $res=$read->read();
+            $read->close();
+            return $res;
+        }
+        /*
+         * Consulta última medición de ph
+         */
+        public function consultaPuntoConductividad(){
+            $connect=Yii::app()->db;
+            $sql="select date_test, conductividad from test order by date_test desc limit 1";
+            $query=$connect->createCommand($sql);
+            $read=$query->query();
+            $res=$read->read();
             $read->close();
             return $res;
         }

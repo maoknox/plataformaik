@@ -49,25 +49,32 @@ class ChartsController extends Controller
          * Muestra temperaturas
          */
         public function actionMuestraArrayTemperatura(){ 
-            $modeloTemperatura=  Test::model()->consultaTemperatura();
-            $data=array();
+            $modeloTemperatura=  Test::model()->consultaHistoricoTemperatura();
+            $ultimoPunto=  Test::model()->consultaPuntoTemperatura();
+            $data["puntos"]=array();
+            $i=0;
             foreach($modeloTemperatura as $dataTemperatura){
-                $time=strtotime ( $dataTemperatura["date_test"] )*1000;
-                $data[]=array("temp"=>(double)$dataTemperatura["temperatura"],"time"=>$time,"tempbd"=>$dataTemperatura["temperatura"]);
-            }           
-           echo CJSON::encode($data);           
+                $time=strtotime ( $dataTemperatura["date_test"] )*1000;                             
+                $data["puntos"][]=array("temp"=>(double)$dataTemperatura["temperatura"],"time"=>$time,"tempbd"=>$dataTemperatura["temperatura"]);
+            }       
+            $data["punto"]=strtotime ( $ultimoPunto["date_test"] )*1000;
+            echo CJSON::encode($data);           
         }
         /*
          * Muestra última medición de temperatura
          */
         public function actionMuestraPuntoTemperatura(){ 
-            $modeloTemperatura=  Test::model()->consultaTemperatura();
-            $data=array();
-            foreach($modeloTemperatura as $dataTemperatura){
-                $time=strtotime ( $dataTemperatura["date_test"] )*1000;
-                $data[]=array("temp"=>(double)$dataTemperatura["temperatura"],"time"=>$time,"tempbd"=>$dataTemperatura["temperatura"]);
-            }           
-           echo CJSON::encode($data);           
+            $dataTemperatura=  Test::model()->consultaPuntoTemperatura();
+            $time=strtotime ( $dataTemperatura["date_test"] )*1000;
+            echo CJSON::encode(array("temp"=>$dataTemperatura["temperatura"],"time"=>$time));
+        }
+        /*
+         * Muestra última medición de ph
+         */
+        public function actionMuestraPuntoPh(){ 
+            $dataPh=  Test::model()->consultaPuntoPh();
+            $time=strtotime ( $dataPh["date_test"] )*1000;
+            echo CJSON::encode(array("ph"=>(double)$dataPh["ph"],"time"=>$time));
         }
         
         /*
@@ -104,11 +111,19 @@ class ChartsController extends Controller
             echo CJSON::encode(array("temp"=>$d,"time"=>$time));           
         }
         /*
+         * Muestra apunto de lectura de humedad
+         */
+        public function actionMuestraPuntoHumedad(){
+            $dataHumedad=  Test::model()->consultaPuntoHumedad();
+            $time=strtotime ( $dataHumedad["date_test"] )*1000;
+            echo CJSON::encode(array("humedad"=>(double)$dataHumedad["humedad"],"time"=>$time));        
+        }
+        /*
          * Muestra array de puntos de un rango de fecha
          */
-        public function actionMuestraPuntoHumedadCond(){
-            $d=0;
-            $d=mt_rand(0,100);
-            echo CJSON::encode(array("humedad"=>$d));           
+        public function actionMuestraPuntoConductividad(){
+            $dataCond=  Test::model()->consultaPuntoConductividad();
+            $time=strtotime ( $dataCond["date_test"] )*1000;
+            echo CJSON::encode(array("conductividad"=>(double)$dataCond["conductividad"],"time"=>$time));        
         }
 }
