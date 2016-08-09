@@ -262,15 +262,19 @@ $(function () {
                                 //url: "muestraPunto",                        
                                 dataType:"json",
                                 type: "post",
-                                async:false,
+                                async:true,
                                 //beforeSend:function (){Loading.show();},
                                 success: function(dataPointJson){  
-                                    if(timeTemp!==dataPointJson.time){
+                                    //if(timeTemp!==dataPointJson.time){
                                         var x = dataPointJson.time, // current time
                                         y = dataPointJson.temp;
                                         series.addPoint([x, y], true, true);
-                                        time=dataPointJson.time;
-                                    }
+                                        timeTemp=dataPointJson.time;
+//                                    }
+//                                    else{
+//                                        
+//                                    }
+                                    
                                     console.debug(dataPointJson);
                                 },
                                 error:function (err){
@@ -278,7 +282,7 @@ $(function () {
                                 }
                             });
                               
-                        }, 5000);
+                        }, 15000);
                     }
                 }
             },

@@ -15,7 +15,7 @@
 				}
 
 				$('#fixture').thermometer( {
-					startValue: 33,
+					startValue: 0,
 					height: 150,
 					width: "100%",
 					bottomText: "0%",
@@ -31,23 +31,26 @@
 						return blendColors("#ff7700","#ff0000", value / 8); 
 					},
 				});
-
+                                var timeHumedad="";
 				window.setInterval( function() {                                      
-					$.ajax({
-                                            url: "muestraPuntoHumedadCond",                        
-                                            dataType:"json",
-                                            type: "post",
-                                            async:false,
-                                            //beforeSend:function (){Loading.show();},
-                                            success: function(dataPointJson){                                                  
+                                    $.ajax({
+                                        url: "muestraPuntoHumedad",                        
+                                        dataType:"json",
+                                        type: "post",
+                                        async:true,
+                                        //beforeSend:function (){Loading.show();},
+                                        success: function(dataPointJson){
+                                            //if(timeHumedad!==dataPointJson.time){
+                                                timeHumedad=dataPointJson.time
                                                 y = dataPointJson.humedad;
                                                 $('#fixture').thermometer( 'setValue', y );
-                                                console.debug(dataPointJson);                                                
-                                            },
-                                            error:function (err){
-                                                console.debug(err);
-                                            }
-                                        });
+                                            //}
+
+                                        },
+                                        error:function (err){
+                                            console.debug(err);
+                                        }
+                                    });
                                          
 				}, 3000 );
 			} );

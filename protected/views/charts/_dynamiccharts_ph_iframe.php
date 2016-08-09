@@ -99,7 +99,7 @@ $(function () {
 
         series: [{
             name: 'PH',
-            data: [7.5],
+            data: [0],
             tooltip: {
                 valueSuffix: ' '
             }
@@ -107,10 +107,27 @@ $(function () {
 
     },function (chart) {
         if (!chart.renderer.forExport) {
+            var timeph;
+            var ph;
             setInterval(function () {
+                $.ajax({
+                    url: "muestraPuntoPh",
+                    //url: "muestraPunto",                        
+                    dataType:"json",
+                    type: "post",
+                    async:false,
+                    //beforeSend:function (){Loading.show();},
+                    success: function(dataPh){  
+                        ph=dataPh.ph;
+                        console.debug(dataPh);
+                    },
+                    error:function (err){
+                        console.debug(err);
+                    }
+                });
                 var point = chart.series[0].points[0]
                 var newVal = Math.floor((Math.random() * 14));
-                point.update(newVal);
+                point.update(ph);
             }, 3000);
         }
     });
