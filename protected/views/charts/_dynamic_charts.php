@@ -52,7 +52,7 @@ $(function () {
         var timeCond="";
         setInterval(function() {
             $.ajax({
-                    url: "muestraPuntoConductividad",                        
+                    url: "charts/muestraPuntoConductividad",                        
                     dataType:"json",
                     type: "post",
                     async:true,
@@ -95,7 +95,7 @@ $(function () {
         var timeHumedad="";
         window.setInterval( function() {                                      
                 $.ajax({
-                    url: "muestraPuntoHumedad",                        
+                    url: "charts/muestraPuntoHumedad",                        
                     dataType:"json",
                     type: "post",
                     async:true,
@@ -223,7 +223,7 @@ $(function () {
             var ph;
             setInterval(function () {
                 $.ajax({
-                    url: "muestraPuntoPh",
+                    url: "charts/muestraPuntoPh",
                     //url: "muestraPunto",                        
                     dataType:"json",
                     type: "post",
@@ -258,7 +258,7 @@ $(function () {
                         var series = this.series[0];
                         setInterval(function () {                           
                             $.ajax({
-                                url: "muestraPuntoTemperatura",
+                                url: "charts/muestraPuntoTemperatura",
                                 //url: "muestraPunto",                        
                                 dataType:"json",
                                 type: "post",
@@ -324,7 +324,7 @@ $(function () {
                         time = (new Date()).getTime(),
                         i=-19;
                     $.ajax({
-                        url: "muestraArrayTemperatura",    
+                        url: "charts/muestraArrayTemperatura",    
                         //url: "muestraArrayPuntos",                        
                         dataType:"json",
                         type: "post",
