@@ -34,7 +34,7 @@
                                 var timeHumedad="";
 				window.setInterval( function() {                                      
                                     $.ajax({
-                                        url: "muestraPuntoHumedad",                        
+                                        url: "<?php echo Yii::app()->baseUrl?>/charts/muestraPuntoHumedad",                        
                                         dataType:"json",
                                         type: "post",
                                         async:true,

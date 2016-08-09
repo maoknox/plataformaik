@@ -27,7 +27,7 @@ $(function () {
                         var series = this.series[0];
                         setInterval(function () {                           
                             $.ajax({
-                                url: "muestraPuntoTemperatura",                        
+                                url: "<?php echo Yii::app()->baseUrl?>/charts/muestraPuntoTemperatura",                        
                                 dataType:"json",
                                 type: "post",
                                 async:false,
@@ -87,7 +87,7 @@ $(function () {
                     // generate an array of random data
                     var data = []
                     $.ajax({
-                        url: "muestraArrayTemperatura",                        
+                        url: "<?php echo Yii::app()->baseUrl?>/charts/muestraArrayTemperatura",                        
                         dataType:"json",
                         type: "post",
                         async:false,
@@ -109,15 +109,7 @@ $(function () {
                             console.debug(err);
                         }
                     });  //console.debug(data);
-                           return data;
-//                    for (i = -19; i <= 0; i += 1) {
-//                                data.push({
-//                                    x: time + i * 1000,
-//                                    y: Math.random()
-//                                });
-//                            }
-//                           console.debug(data);
-//                            return data;
+                           return data;                    
                 }())
             }]
         });

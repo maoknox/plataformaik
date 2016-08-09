@@ -111,7 +111,7 @@ $(function () {
             var ph;
             setInterval(function () {
                 $.ajax({
-                    url: "muestraPuntoPh",
+                    url: "<?php echo Yii::app()->baseUrl?>/charts/muestraPuntoPh",
                     //url: "muestraPunto",                        
                     dataType:"json",
                     type: "post",

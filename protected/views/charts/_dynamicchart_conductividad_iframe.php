@@ -31,7 +31,7 @@
         var timeCond="";
         setInterval(function() {
             $.ajax({
-                    url: "muestraPuntoConductividad",                        
+                    url: "<?php echo Yii::app()->baseUrl?>/charts/muestraPuntoConductividad",                        
                     dataType:"json",
                     type: "post",
                     async:true,
