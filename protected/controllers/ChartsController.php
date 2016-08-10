@@ -65,6 +65,7 @@ class ChartsController extends Controller
          */
         public function actionPrendeMotor(){
             $fp = fsockopen("52.33.51.182", 8010, $errno, $errstr, 30);
+            
             if (!$fp) {
                 echo "$errstr ($errno)<br />\n";
             } else {
