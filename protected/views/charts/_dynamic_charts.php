@@ -7,7 +7,7 @@
         <script src="<?php echo Yii::app()->baseUrl?>/js/charts/justgage.js"></script>
         
         <script type="text/javascript" src="<?php echo Yii::app()->baseUrl?>/js/jquery.thermometer.js"></script>
-<div class="row " >
+        <div class="row " >
             <div class="span-6 img-rounded" style="border: 1px solid #888888;" >
                 <?php echo CHtml::button("Activar Motor",array("onClick"=>"js:enviaComando('prendeMotor','1')"));?><?php echo "        " ?><?php echo CHtml::button("Desactivar Motor");?>
                 <?php echo CHtml::button("Activar Electro válvula");?><?php echo "        " ?><?php echo CHtml::button("Desactivar Electro válvula");?>
