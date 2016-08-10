@@ -81,9 +81,9 @@ return array(
 		
 		'db'=>array(
                     'tablePrefix'=>'',
-                    'connectionString' => 'pgsql:host=ec2-50-19-239-232.compute-1.amazonaws.com;port=5432;dbname=d3pqhhumoodekg',
-                    'username'=>'jwrotglmhyrbjk',
-                    'password'=>'n_p5NZRCSfujJ0I1xdzYxFK8Tj',
+                    'connectionString' => 'pgsql:host=ec2-174-129-242-241.compute-1.amazonaws.com;port=5432;dbname=d1b9pv88jl26t9',
+                    'username'=>'ajrbjyuywyluwm',
+                    'password'=>'sRVVqYKhD2bdn_qWz6tCYSP71h',
                     'charset'=>'UTF8',
                 ),
 		
