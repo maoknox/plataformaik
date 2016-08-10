@@ -7,11 +7,12 @@
         <script src="<?php echo Yii::app()->baseUrl?>/js/charts/justgage.js"></script>
         
         <script type="text/javascript" src="<?php echo Yii::app()->baseUrl?>/js/jquery.thermometer.js"></script>
-<!--        <div class="row " >
+<div class="row " >
             <div class="span-6 img-rounded" style="border: 1px solid #888888;" >
-                BUTTONS
+                <?php echo CHtml::button("Activar Motor",array("onClick"=>"js:enviaComando('prendeMotor','1')"));?><?php echo "        " ?><?php echo CHtml::button("Desactivar Motor");?>
+                <?php echo CHtml::button("Activar Electro válvula");?><?php echo "        " ?><?php echo CHtml::button("Desactivar Electro válvula");?>
             </div> 
-        </div>-->
+        </div>
 <hr>        
 <div class="row">
     <div class="span-6 img-rounded" style="border: 1px solid #888888;" >
@@ -39,6 +40,20 @@
      
 
 <script>
+function enviaComando(){        
+    $.ajax({
+                url: "<?php echo Yii::app()->baseUrl?>/charts/prendeMotor",                        
+                dataType:"json",
+                type: "post",
+                //beforeSend:function (){Loading.show();},
+                success: function(dataPointJson){
+                    console.debug(dataPointJson.message);                                                                  
+                },
+                error:function (err){
+                    console.debug(err);
+                }
+            });
+}
 $(function () {
     $(document).ready(function () {
            var g1 = new JustGage({

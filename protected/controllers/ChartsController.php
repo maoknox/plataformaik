@@ -61,6 +61,21 @@ class ChartsController extends Controller
             echo CJSON::encode($data);           
         }
         /*
+         * Muestra temperaturas
+         */
+        public function actionPrendeMotor(){
+            $fp = fsockopen("52.33.51.182", 8010, $errno, $errstr, 30);
+            if (!$fp) {
+                echo "$errstr ($errno)<br />\n";
+            } else {
+                $out = "!C001,A0,B0,C0,D0,E0,F0,G0,H0*";
+                //$out = "!N001*";
+                fwrite($fp, $out);
+                fclose($fp);
+            }
+            echo CJSON::encode(array("message"=>"Mensaje enviado"));
+        }
+        /*
          * Muestra última medición de temperatura
          */
         public function actionMuestraPuntoTemperatura(){ 
