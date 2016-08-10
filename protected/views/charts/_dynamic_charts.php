@@ -61,8 +61,7 @@ $(function () {
                         if(timeCond!==dataPointJson.time){
                             timeCond=dataPointJson.time
                             g1.refresh(dataPointJson.conductividad)
-                        }
-                                                                   
+                        }                                                               
                     },
                     error:function (err){
                         console.debug(err);
