@@ -4,8 +4,7 @@
         <script src="https://code.highcharts.com/highcharts-more.js"></script>
         <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
         <script src="<?php echo Yii::app()->baseUrl?>/js/charts/raphael-2.1.4.min.js"></script>
-        <script src="<?php echo Yii::app()->baseUrl?>/js/charts/justgage.js"></script>
-        
+        <script src="<?php echo Yii::app()->baseUrl?>/js/charts/justgage.js"></script>       
         <script type="text/javascript" src="<?php echo Yii::app()->baseUrl?>/js/jquery.thermometer.js"></script>
         <div class="row " >
             <div class="span-6 img-rounded" style="border: 1px solid #888888;" >
