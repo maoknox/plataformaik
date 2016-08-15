@@ -2,9 +2,26 @@
 
 class ChartsController extends Controller
 {
-    
-        
-	
+    /**
+    * Acción que se ejecuta en segunda instancia para verificar si el usuario tiene sesión activa.
+    * En caso contrario no podrá acceder a los módulos del aplicativo y generará error de acceso.
+    */
+    public function filterEnforcelogin($filterChain){
+        if(Yii::app()->user->isGuest){
+            throw new CHttpException('403',"Debe loguearse primero");
+            Yii::app()->user->returnUrl = array("site/login");                                                          
+            $this->redirect(Yii::app()->user->returnUrl);
+        }
+        $filterChain->run();
+    }
+        /**
+	 * @return array action filters
+	 */
+//	public function filters(){
+//            return array(
+//                    'enforcelogin -index  ',                      
+//            );
+//	}
         /**
 	 * Llama a vista que muestra gráfico dinámico.
 	 */
@@ -64,6 +81,54 @@ class ChartsController extends Controller
          * Muestra temperaturas
          */
         public function actionPrendeMotor(){
+            $fp = fsockopen("52.33.51.182", 8010, $errno, $errstr, 30);
+            
+            if (!$fp) {
+                echo "$errstr ($errno)<br />\n";
+            } else {
+                //$out = "!C001,A0,B0,C0,D0,E0,F0,G1,H1*";
+                $out = "!N001*";
+                fwrite($fp, $out);
+                fclose($fp);
+            }
+            echo CJSON::encode(array("message"=>"Mensaje enviado"));
+        }
+        /*
+         * Muestra temperaturas
+         */
+        public function actionPrendeElectroValvula(){
+            $fp = fsockopen("52.33.51.182", 8010, $errno, $errstr, 30);
+            
+            if (!$fp) {
+                echo "$errstr ($errno)<br />\n";
+            } else {
+                $out = "!C001,A0,B0,C0,D0,E0,F0,G1,H1*";
+                //$out = "!N001*";
+                fwrite($fp, $out);
+                fclose($fp);
+            }
+            echo CJSON::encode(array("message"=>"Mensaje enviado"));
+        }
+        /*
+         * Muestra temperaturas
+         */
+        public function actionApagaElectroValvula(){
+            $fp = fsockopen("52.33.51.182", 8010, $errno, $errstr, 30);
+            
+            if (!$fp) {
+                echo "$errstr ($errno)<br />\n";
+            } else {
+                $out = "!C001,A0,B0,C0,D0,E0,F0,G0,H0*";
+                //$out = "!N001*";
+                fwrite($fp, $out);
+                fclose($fp);
+            }
+            echo CJSON::encode(array("message"=>"Mensaje enviado"));
+        }
+        /*
+         * Muestra temperaturas
+         */
+        public function actionApagaMotor(){
             $fp = fsockopen("52.33.51.182", 8010, $errno, $errstr, 30);
             
             if (!$fp) {

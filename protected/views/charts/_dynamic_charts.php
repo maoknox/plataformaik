@@ -8,8 +8,8 @@
         <script type="text/javascript" src="<?php echo Yii::app()->baseUrl?>/js/jquery.thermometer.js"></script>
         <div class="row " >
             <div class="span-6 img-rounded" style="border: 1px solid #888888;" >
-                <?php echo CHtml::button("Activar Motor",array("onClick"=>"js:enviaComando('prendeMotor','1')"));?><?php echo "        " ?><?php echo CHtml::button("Desactivar Motor");?>
-                <?php echo CHtml::button("Activar Electro válvula");?><?php echo "        " ?><?php echo CHtml::button("Desactivar Electro válvula");?>
+                <?php echo CHtml::button("Activar Motor",array("onClick"=>"js:enviaComando('prendeMotor','1')"));?><?php echo "        " ?><?php echo CHtml::button("Desactivar Motor",array("onClick"=>"js:enviaComando('apagaMotor','1')"));?>
+                <?php echo CHtml::button("Activar Electro válvula",array("onClick"=>"js:enviaComando('prendeElectroValvula','1')"));?><?php echo "        " ?><?php echo CHtml::button("Desactivar Electro válvula",array("onClick"=>"js:enviaComando('ppagaElectroValvula','1')"));?>
             </div> 
         </div>
 <hr>        
@@ -36,12 +36,12 @@
         
     </div>
 </div>
-     
-
+<hr>
+<div class="row" style=" text-align: right"> <strong>En alianza con </strong><img src="<?php echo Yii::app()->baseUrl; ?>/images/logoUNAD.png" style="width: 240px;height: 50px"></img></div>
 <script>
-function enviaComando(){        
+function enviaComando(action,state){        
     $.ajax({
-                url: "<?php echo Yii::app()->baseUrl?>/charts/prendeMotor",                        
+                url: "<?php echo Yii::app()->baseUrl?>/charts/"+action,                        
                 dataType:"json",
                 type: "post",
                 //beforeSend:function (){Loading.show();},
