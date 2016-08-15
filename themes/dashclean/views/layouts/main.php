@@ -38,7 +38,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                   <a href="<?php echo Yii::app()->baseUrl; ?>" class="brand"><i class="icon-leaf">Plataforma IK</i></a>
+                    <a href="<?php echo Yii::app()->baseUrl; ?>" class="brand"><i>Plataforma <img src="<?php echo Yii::app()->baseUrl; ?>/images/gifik.gif" style="width: 45px;height: 25px"></img></i></a>
                     <div id="app-nav-top-bar" class="nav-collapse">                      
                         <ul class="nav pull-right">
                             <?php if(!Yii::app()->user->isGuest):?>
@@ -85,7 +85,8 @@
                     <?php else:?>                     
                     <div class="span7">
                         <header class="page-header">
-                            <h3 style="color: whitesmoke">BIENVENIDO A PLATAFORMA IK</h3>
+                            <h4 style="color: whitesmoke">BIENVENIDO A PLATAFORMA IK</h4>
+                            <h4 style="color: whitesmoke">INGETRONIK</h4>
                         </header>
                     </div>
                     <?php endif;?>
@@ -102,8 +103,9 @@
         </div>
 
         <footer class="application-footer">
-            <div class="container">
-                <p>INGTRONIK</p>
+            <div class="container">               
+                <img src="<?php echo Yii::app()->baseUrl; ?>/images/logoik.png" style="width: 80px;height: 50px"></img>
+                <p>INGETRONIK</p>
                 <div class="disclaimer">
                     <p>Todos los derechos reservados.</p>
                     <p>Copyright © 2016</p>    

@@ -6,7 +6,9 @@
             <file>file:/var/www/html/plataformaik/protected/views/charts/_dynamic_charts.php</file>
             <file>file:/var/www/html/plataformaik/protected/views/charts/_dynamic_charts_iframe.php</file>
             <file>file:/var/www/html/plataformaik/protected/views/charts/_dynamiccharts_ph_iframe.php</file>
+            <file>file:/var/www/html/plataformaik/.gitignore</file>
             <file>file:/var/www/html/plataformaik/protected/controllers/ChartsController.php</file>
+            <file>file:/var/www/html/plataformaik/protected/config/main.php</file>
             <file>file:/var/www/html/plataformaik/protected/models/Test.php</file>
             <file>file:/var/www/html/plataformaik/protected/controllers/AvlController.php</file>
             <file>file:/var/www/html/plataformaik/protected/views/avl/_search_vehicle_iframe.php</file>

@@ -2,12 +2,18 @@
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
- <div id="ph" style="min-width: 210px; max-width: 300; height: 200px; margin: 0 auto" >bla</div>
+ <div id="ph" style="min-width: 210px; max-width: 300; height: 200px; margin: 0 auto" ></div>
         <div class="span-6 img-rounded" style="border: 1px solid #888888;  padding: 20px 20px 20px 20px;" >
             <div><div><span style=" background-color: #55BF3B">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> -Ácido </div></div>
             <div><div><span style=" background-color: #DDDF0D">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> -Neutro</div></div>
             <div><div><span style=" background-color: #DF5353">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> -Alcalino</div></div>        
         </div>
+<div class="row" style=" text-align: center"> 
+    
+    <br><strong><h6><img src="<?php echo Yii::app()->baseUrl; ?>/images/logoik.png" style="width: 40px;height: 20px"></img><br>Ingetronik<div class="disclaimer">
+                    <p>Todos los derechos reservados.</p>
+                    <p>Copyright © 2016</p>    
+                </div><h6></strong></div>
 
 <script>
 $(function () {

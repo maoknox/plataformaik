@@ -2,9 +2,35 @@
 
 class ChartsController extends Controller
 {
-    
+    /**
+    * Acción que se ejecuta en segunda instancia para verificar si el usuario tiene sesión activa.
+    * En caso contrario no podrá acceder a los módulos del aplicativo y generará error de acceso.
+    */
+    public function filterEnforcelogin($filterChain){
+        if(Yii::app()->user->isGuest){
+            throw new CHttpException('403',"Debe loguearse primero");
+            Yii::app()->user->returnUrl = array("site/login");                                                          
+            $this->redirect(Yii::app()->user->returnUrl);
+        }
+        $filterChain->run();
+    }
+    /**
+    * Consulta estado de válvulas
+    */
+    public function actionEstados(){
+        $estados=  Test::model()->consultaEstados();
+        $subsEstados=explode(",",$estados["trama_datos"] );
         
-	
+        echo CJSON::encode(array("motor"=>$subsEstados[count($subsEstados)-2],"electrovalvula"=>$subsEstados[count($subsEstados)-1],"f"=>$subsEstados[count($subsEstados)-3])); 
+    }
+        /**
+	 * @return array action filters
+	 */
+//	public function filters(){
+//            return array(
+//                    'enforcelogin -index  ',                      
+//            );
+//	}
         /**
 	 * Llama a vista que muestra gráfico dinámico.
 	 */
@@ -61,9 +87,75 @@ class ChartsController extends Controller
             echo CJSON::encode($data);           
         }
         /*
+         * Envía comando a central
+         */
+        public function actionEnviaComando(){
+            $fp = fsockopen("52.33.51.182", 8010, $errno, $errstr, 30);
+            
+            if (!$fp) {
+                echo "$errstr ($errno)<br />\n";
+            } else {
+                $f=$_POST["f"];
+                $g=$_POST["g"];
+                $h=$_POST["h"];
+                $out = "!C,010,A0,B0,C0,D0,E0,".$f.",".$g.",".$h."*";
+                //$out = "!N001*";
+                fwrite($fp, $out);
+                fclose($fp);
+            }
+            echo CJSON::encode(array("message"=>"mensaje enviado"));
+        }
+        /*
+         * Envía comando de liberación a central
+         */
+        public function actionLiberarCentral(){
+            $fp = fsockopen("52.33.51.182", 8010, $errno, $errstr, 30);
+            
+            if (!$fp) {
+                echo "$errstr ($errno)<br />\n";
+            } else {
+                $out = "!N001*";
+                fwrite($fp, $out);
+                fclose($fp);
+            }
+            echo CJSON::encode(array("message"=>"Mensaje enviado"));
+        }
+        /*
          * Muestra temperaturas
          */
-        public function actionPrendeMotor(){
+        public function actionPrendeElectroValvula(){
+            $fp = fsockopen("52.33.51.182", 8010, $errno, $errstr, 30);
+            
+            if (!$fp) {
+                echo "$errstr ($errno)<br />\n";
+            } else {
+                $out = "!C001,A0,B0,C0,D0,E0,F0,G1,H1*";
+                //$out = "!N001*";
+                fwrite($fp, $out);
+                fclose($fp);
+            }
+            echo CJSON::encode(array("message"=>"Mensaje enviado"));
+        }
+        /*
+         * Muestra temperaturas
+         */
+        public function actionApagaElectroValvula(){
+            $fp = fsockopen("52.33.51.182", 8010, $errno, $errstr, 30);
+            
+            if (!$fp) {
+                echo "$errstr ($errno)<br />\n";
+            } else {
+                $out = "!C001,A0,B0,C0,D0,E0,F0,G0,H0*";
+                //$out = "!N001*";
+                fwrite($fp, $out);
+                fclose($fp);
+            }
+            echo CJSON::encode(array("message"=>"Mensaje enviado"));
+        }
+        /*
+         * Muestra temperaturas
+         */
+        public function actionApagaMotor(){
             $fp = fsockopen("52.33.51.182", 8010, $errno, $errstr, 30);
             
             if (!$fp) {
