@@ -170,4 +170,16 @@ class Test extends CActiveRecord
             $read->close();
             return $res;
         }
+        /*
+         * Consulta última medición de ph
+         */
+        public function consultaEstados(){
+            $connect=Yii::app()->db;
+            $sql="select trama_datos from test order by date_test desc limit 1";
+            $query=$connect->createCommand($sql);
+            $read=$query->query();
+            $res=$read->read();
+            $read->close();
+            return $res;
+        }
 }

@@ -1,17 +1,31 @@
 
-
+        <link href="<?php echo Yii::app()->baseUrl; ?>/css/charts/leds.css" type="text/css" media="screen, projection" rel="stylesheet" />
 	<script src="https://code.highcharts.com/highcharts.js"></script>
         <script src="https://code.highcharts.com/highcharts-more.js"></script>
         <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
         <script src="<?php echo Yii::app()->baseUrl?>/js/charts/raphael-2.1.4.min.js"></script>
         <script src="<?php echo Yii::app()->baseUrl?>/js/charts/justgage.js"></script>       
         <script type="text/javascript" src="<?php echo Yii::app()->baseUrl?>/js/jquery.thermometer.js"></script>
-        <div class="row " >
-            <div class="span-6 img-rounded" style="border: 1px solid #888888;" >
-                <?php echo CHtml::button("Activar Motor",array("onClick"=>"js:enviaComando('prendeMotor','1')"));?><?php echo "        " ?><?php echo CHtml::button("Desactivar Motor",array("onClick"=>"js:enviaComando('apagaMotor','1')"));?>
-                <?php echo CHtml::button("Activar Electro válvula",array("onClick"=>"js:enviaComando('prendeElectroValvula','1')"));?><?php echo "        " ?><?php echo CHtml::button("Desactivar Electro válvula",array("onClick"=>"js:enviaComando('ppagaElectroValvula','1')"));?>
+        <div class="row"  >
+            <div class="span-6 img-rounded" style=" border: 1px solid #888888; padding: 10px 10px 10px 10px" >
+                <div class="row"> <div class="span-6" >Motor <div  id="divLedMotor"></div></div></div>
+                <div class="row"> <div class="span-6" ><?php echo CHtml::button("Activar Motor",array("id"=>"btnActivaMotor" , "style"=>"display:none","onClick"=>"js:enviaComando('prendeMotor','G1')"));?><?php echo CHtml::button("Desactivar Motor",array("id"=>"btnDesactivaMotor", "style"=>"display:none","onClick"=>"js:enviaComando('apagaMotor','G0')"));?></div></div>
+                <?php echo CHtml::hiddenField("estadoMotor","",array("id"=>"estadoMotor"))?>
+            </div>
+            <div class="span-6 img-rounded" style="border: 1px solid #888888; padding: 10px 10px 10px 10px" >
+                <div class="row"> <div class="span-6">Electro válvula <div id="divLedElValv"></div></div></div>
+                <div class="row"> <div class="span-6" ><?php echo CHtml::button("Activar electro válvula",array("id"=>"btnActivaElValv","style"=>"display:none","onClick"=>"js:enviaComando('prendeElectroValvula','H1')"));?><?php echo "        " ?><?php echo CHtml::button("Desactivar electro válvula",array("id"=>"btnDesactivaElValv","style"=>"display:none","onClick"=>"js:enviaComando('apagaElectroValvula','H0')"));?></div></div>
+                <?php echo CHtml::hiddenField("estadoEValvula","",array("id"=>"estadoEValvula"))?>
+                <?php echo CHtml::hiddenField("estadoF","",array("id"=>"estadoF"))?>
+            </div>
+            <div class="span-6 img-rounded" style="border: 1px solid #888888; padding: 10px 10px 10px 10px" >
+                
+                <?php echo CHtml::button("Liberar Central",array("id"=>"btnALiberaCentral","onClick"=>"js:liberaCentral()"));?></div>
+                
             </div> 
+            
         </div>
+
 <hr>        
 <div class="row">
     <div class="span-6 img-rounded" style="border: 1px solid #888888;" >
@@ -39,23 +53,105 @@
 <hr>
 <div class="row" style=" text-align: right"> <strong>En alianza con </strong><img src="<?php echo Yii::app()->baseUrl; ?>/images/logoUNAD.png" style="width: 240px;height: 50px"></img></div>
 <script>
-function enviaComando(action,state){        
+function enviaComando(action,state){
+    if(action==="apagaMotor"){
+        $("#estadoMotor").val("G0");
+    }
+    else if(action === "prendeMotor"){
+        $("#estadoMotor").val("G1");
+    }
+    else if(action === "prendeElectroValvula"){
+        $("#estadoEValvula").val("H1");
+    }
+    else if(action === "apagaElectroValvula"){
+        $("#estadoEValvula").val("H0");
+    }
+    
+    var data = 'h='+$("#estadoEValvula").val()+'&g='+$("#estadoMotor").val()+'&f='+$("#estadoF").val(); 
     $.ajax({
-                url: "<?php echo Yii::app()->baseUrl?>/charts/"+action,                        
+        url: "<?php echo Yii::app()->baseUrl?>/charts/enviaComando",                              
+        type: "post",
+        //data: "{h: "+$("#estadoEValvula").val()+", g:"+$("#estadoMotor").val()+",f:"+$("#estadoF").val()+"}",
+        data:data,
+        dataType:"json",
+        //beforeSend:function (){Loading.show();},
+        success: function(dataPointJson){
+            console.debug(dataPointJson);                                                                  
+        },
+        error:function (err){
+            console.debug(err);
+        }
+    });
+}
+function liberaCentral(){
+   
+    var data = 'h='+$("#estadoEValvula").val()+'&g='+$("#estadoMotor").val()+'&f='+$("#estadoF").val(); 
+    $.ajax({
+        url: "<?php echo Yii::app()->baseUrl?>/charts/liberarCentral",                              
+        type: "post",
+        //data: "{h: "+$("#estadoEValvula").val()+", g:"+$("#estadoMotor").val()+",f:"+$("#estadoF").val()+"}",
+        dataType:"json",
+        //beforeSend:function (){Loading.show();},
+        success: function(dataPointJson){
+            console.debug(dataPointJson);                                                                  
+        },
+        error:function (err){
+            console.debug(err);
+        }
+    });
+}
+$(function () {
+    $(document).ready(function () {
+        //consulta estado de válvulas
+        
+         setInterval(function() {   $.ajax({
+                url: "<?php echo Yii::app()->baseUrl?>/charts/estados",                        
                 dataType:"json",
                 type: "post",
                 //beforeSend:function (){Loading.show();},
                 success: function(dataPointJson){
-                    console.debug(dataPointJson.message);                                                                  
+                    $("#divLedMotor").removeClass();
+                    $("#divLedElValv").removeClass();
+                    $("#btnActivaMotor").hide();
+                    $("#btnDesactivaMotor").hide();
+                    $("#btnActivaElValv").hide();
+                    $("#btnDesactivaElValv").hide();
+                    if(dataPointJson.motor==="G1"){
+                        $("#divLedMotor").addClass("led-green");
+                        $("#estadoMotor").val("G1");
+                        $("#btnDesactivaMotor").show();                        
+                    }
+                    else{
+                        $("#divLedMotor").addClass("led-red");
+                        $("#estadoMotor").val("G0");
+                        $("#btnActivaMotor").show();
+                    }
+                    if(dataPointJson.electrovalvula==="H1"){
+                        $("#divLedElValv").addClass("led-green");
+                        $("#estadoEValvula").val("H1");   
+                        $("#btnDesactivaElValv").show();
+                    }
+                    else{
+                        $("#divLedElValv").addClass("led-red");
+                        $("#estadoEValvula").val("H0");
+                        $("#btnActivaElValv").show();
+                    }
+                    if(dataPointJson.f==="F1"){
+                        $("#estadoF").val("F1");
+                    }
+                    else{
+                        $("#estadoF").val("F0");
+                    }
+
+                    console.debug(dataPointJson);                                                                  
                 },
                 error:function (err){
                     console.debug(err);
                 }
             });
-}
-$(function () {
-    $(document).ready(function () {
-           var g1 = new JustGage({
+        },3000);
+        //
+        var g1 = new JustGage({
           id: "g1",
           value: 0,
           min: 0,

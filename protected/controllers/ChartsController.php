@@ -14,6 +14,15 @@ class ChartsController extends Controller
         }
         $filterChain->run();
     }
+    /**
+    * Consulta estado de válvulas
+    */
+    public function actionEstados(){
+        $estados=  Test::model()->consultaEstados();
+        $subsEstados=explode(",",$estados["trama_datos"] );
+        
+        echo CJSON::encode(array("motor"=>$subsEstados[count($subsEstados)-2],"electrovalvula"=>$subsEstados[count($subsEstados)-1],"f"=>$subsEstados[count($subsEstados)-3])); 
+    }
         /**
 	 * @return array action filters
 	 */
@@ -78,15 +87,33 @@ class ChartsController extends Controller
             echo CJSON::encode($data);           
         }
         /*
-         * Muestra temperaturas
+         * Envía comando a central
          */
-        public function actionPrendeMotor(){
+        public function actionEnviaComando(){
             $fp = fsockopen("52.33.51.182", 8010, $errno, $errstr, 30);
             
             if (!$fp) {
                 echo "$errstr ($errno)<br />\n";
             } else {
-                //$out = "!C001,A0,B0,C0,D0,E0,F0,G1,H1*";
+                $f=$_POST["f"];
+                $g=$_POST["g"];
+                $h=$_POST["h"];
+                $out = "!C,010,A0,B0,C0,D0,E0,".$f.",".$g.",".$h."*";
+                //$out = "!N001*";
+                fwrite($fp, $out);
+                fclose($fp);
+            }
+            echo CJSON::encode(array("message"=>"mensaje enviado"));
+        }
+        /*
+         * Envía comando de liberación a central
+         */
+        public function actionLiberarCentral(){
+            $fp = fsockopen("52.33.51.182", 8010, $errno, $errstr, 30);
+            
+            if (!$fp) {
+                echo "$errstr ($errno)<br />\n";
+            } else {
                 $out = "!N001*";
                 fwrite($fp, $out);
                 fclose($fp);
