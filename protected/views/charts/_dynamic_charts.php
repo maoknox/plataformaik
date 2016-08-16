@@ -54,17 +54,27 @@
 <div class="row" style=" text-align: right"> <strong>En alianza con </strong><img src="<?php echo Yii::app()->baseUrl; ?>/images/logoUNAD.png" style="width: 240px;height: 50px"></img></div>
 <script>
 function enviaComando(action,state){
+    
     if(action==="apagaMotor"){
         $("#estadoMotor").val("G0");
+        $("#divLedMotor").removeClass();
+        $("#divLedMotor").addClass("led-red");
     }
     else if(action === "prendeMotor"){
         $("#estadoMotor").val("G1");
+        $("#divLedMotor").removeClass();
+        $("#divLedMotor").addClass("led-green");
     }
     else if(action === "prendeElectroValvula"){
         $("#estadoEValvula").val("H1");
+        $("#divLedElValv").removeClass();
+        $("#divLedElValv").addClass("led-green");
+        
     }
     else if(action === "apagaElectroValvula"){
         $("#estadoEValvula").val("H0");
+        $("#divLedElValv").removeClass();
+        $("#divLedElValv").addClass("led-red");
     }
     
     var data = 'h='+$("#estadoEValvula").val()+'&g='+$("#estadoMotor").val()+'&f='+$("#estadoF").val(); 
@@ -336,7 +346,7 @@ $(function () {
                     //url: "muestraPunto",                        
                     dataType:"json",
                     type: "post",
-                    async:false,
+                    async:true,
                     //beforeSend:function (){Loading.show();},
                     success: function(dataPh){  
                         ph=dataPh.ph;
@@ -349,7 +359,7 @@ $(function () {
                 var point = chart.series[0].points[0]
                 var newVal = Math.floor((Math.random() * 14));
                 point.update(ph);
-            }, 3000);
+            }, 6000);
         }
     });
 
@@ -371,7 +381,6 @@ $(function () {
                                 //url: "muestraPunto",                        
                                 dataType:"json",
                                 type: "post",
-                                async:true,
                                 //beforeSend:function (){Loading.show();},
                                 success: function(dataPointJson){  
                                     //if(timeTemp!==dataPointJson.time){
@@ -426,7 +435,7 @@ $(function () {
                 enabled: false
             },
             series: [{
-                name: 'T vs H',
+                name: 'Temperatura vs Tiempo',
                 data: (function () {
                     // generate an array of random data
                     var data = [],
