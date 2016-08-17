@@ -20,7 +20,12 @@
             </div>
             <div class="span-6 img-rounded" style="border: 1px solid #888888; padding: 10px 10px 10px 10px" >
                 
-                <?php echo CHtml::button("Liberar Central",array("id"=>"btnALiberaCentral","onClick"=>"js:liberaCentral()"));?></div>
+                <?php echo CHtml::button("Liberar Central",array("id"=>"btnALiberaCentral","onClick"=>"js:liberaCentral()"));?>
+                
+            </div> 
+            <div class="img-rounded" style=" text-align: right;" >
+                
+                <strong>En alianza con </strong><img src="<?php echo Yii::app()->baseUrl; ?>/images/logoUNAD.png" style="width: 240px;height: 50px"></img>
                 
             </div> 
             
@@ -51,7 +56,7 @@
     </div>
 </div>
 <hr>
-<div class="row" style=" text-align: right"> <strong>En alianza con </strong><img src="<?php echo Yii::app()->baseUrl; ?>/images/logoUNAD.png" style="width: 240px;height: 50px"></img></div>
+
 <script>
 function enviaComando(action,state){
     
@@ -243,132 +248,132 @@ $(function () {
                 useUTC: false
             }
         });
-    $('#ph').highcharts({
+        $('#ph').highcharts({
 
-        chart: {
-            type: 'gauge',
-            plotBackgroundColor: null,
-            plotBackgroundImage: null,
-            plotBorderWidth: 0,
-            plotShadow: false
-        },
-
-        title: {
-            text: "PH"
-        },
-
-        pane: {
-            startAngle: -150,
-            endAngle: 150,
-            background: [{
-                backgroundColor: {
-                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-                    stops: [
-                        [0, '#FFF'],
-                        [1, '#333']
-                    ]
-                },
-                borderWidth: 0,
-                outerRadius: '109%'
-            }, {
-                backgroundColor: {
-                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-                    stops: [
-                        [0, '#333'],
-                        [1, '#FFF']
-                    ]
-                },
-                borderWidth: 1,
-                outerRadius: '107%'
-            }, {
-                // default background
-            }, {
-                backgroundColor: '#DDD',
-                borderWidth: 0,
-                outerRadius: '105%',
-                innerRadius: '103%'
-            }]
-        },
-
-        // the value axis
-        yAxis: {
-            min: 0,
-            max: 14,
-
-            minorTickInterval: 'auto',
-            minorTickWidth: 1,
-            minorTickLength: 10,
-            minorTickPosition: 'inside',
-            minorTickColor: '#666',
-
-            tickPixelInterval: 30,
-            tickWidth: 2,
-            tickPosition: 'inside',
-            tickLength: 10,
-            tickColor: '#666',
-            labels: {
-                step: 2,
-                rotation: 'auto'
+            chart: {
+                type: 'gauge',
+                plotBackgroundColor: null,
+                plotBackgroundImage: null,
+                plotBorderWidth: 0,
+                plotShadow: false
             },
+
             title: {
-                text: 'PH'
+                text: "PH"
             },
-            plotBands: [{
-                from: 0,
-                to: 7,
-                color: '#55BF3B' // green
-            }, {
-                from: 7,
-                to: 8,
-                color: '#DDDF0D' // yellow
-            }, {
-                from: 8,
-                to: 14,
-                color: '#DF5353' // red
-            }]
-        },
 
-        series: [{
-            name: 'PH',
-            data: [0],
-            tooltip: {
-                valueSuffix: ' '
-            }
-        }]
-
-    },function (chart) {
-        if (!chart.renderer.forExport) {
-            var timeph;
-            var ph;
-            setInterval(function () {
-                $.ajax({
-                    url: "<?php echo Yii::app()->baseUrl?>/charts/muestraPuntoPh",
-                    //url: "muestraPunto",                        
-                    dataType:"json",
-                    type: "post",
-                    async:true,
-                    //beforeSend:function (){Loading.show();},
-                    success: function(dataPh){  
-                        ph=dataPh.ph;
-                        console.debug(dataPh);
+            pane: {
+                startAngle: -150,
+                endAngle: 150,
+                background: [{
+                    backgroundColor: {
+                        linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                        stops: [
+                            [0, '#FFF'],
+                            [1, '#333']
+                        ]
                     },
-                    error:function (err){
-                        console.debug(err);
-                    }
-                });
-                var point = chart.series[0].points[0]
-                var newVal = Math.floor((Math.random() * 14));
-                point.update(ph);
-            }, 6000);
-        }
-    });
+                    borderWidth: 0,
+                    outerRadius: '109%'
+                }, {
+                    backgroundColor: {
+                        linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                        stops: [
+                            [0, '#333'],
+                            [1, '#FFF']
+                        ]
+                    },
+                    borderWidth: 1,
+                    outerRadius: '107%'
+                }, {
+                    // default background
+                }, {
+                    backgroundColor: '#DDD',
+                    borderWidth: 0,
+                    outerRadius: '105%',
+                    innerRadius: '103%'
+                }]
+            },
+
+            // the value axis
+            yAxis: {
+                min: 0,
+                max: 14,
+
+                minorTickInterval: 'auto',
+                minorTickWidth: 1,
+                minorTickLength: 10,
+                minorTickPosition: 'inside',
+                minorTickColor: '#666',
+
+                tickPixelInterval: 30,
+                tickWidth: 2,
+                tickPosition: 'inside',
+                tickLength: 10,
+                tickColor: '#666',
+                labels: {
+                    step: 2,
+                    rotation: 'auto'
+                },
+                title: {
+                    text: 'PH'
+                },
+                plotBands: [{
+                    from: 0,
+                    to: 7,
+                    color: '#55BF3B' // green
+                }, {
+                    from: 7,
+                    to: 8,
+                    color: '#DDDF0D' // yellow
+                }, {
+                    from: 8,
+                    to: 14,
+                    color: '#DF5353' // red
+                }]
+            },
+
+            series: [{
+                name: 'PH',
+                data: [0],
+                tooltip: {
+                    valueSuffix: ' '
+                }
+            }]
+
+        },function (chart) {
+            if (!chart.renderer.forExport) {
+                var timeph;
+                var ph;
+                setInterval(function () {
+                    $.ajax({
+                        url: "<?php echo Yii::app()->baseUrl?>/charts/muestraPuntoPh",
+                        //url: "muestraPunto",                        
+                        dataType:"json",
+                        type: "post",
+                        async:true,
+                        //beforeSend:function (){Loading.show();},
+                        success: function(dataPh){  
+                            ph=dataPh.ph;
+                            console.debug(dataPh);
+                        },
+                        error:function (err){
+                            console.debug(err);
+                        }
+                    });
+                    var point = chart.series[0].points[0]
+                    var newVal = Math.floor((Math.random() * 14));
+                    point.update(ph);
+                }, 6000);
+            }
+        });
 
 
 
         var timeTemp;
         $('#container').highcharts({
             chart: {
-                type: 'spline',
+                defaultSeriesType: 'spline',
                 animation: Highcharts.svg, // don't animate in old IE
                 marginRight: 10,
                 events: {
@@ -481,5 +486,28 @@ $(function () {
     });
     
 });
+/**
+ * Request data from the server, add it to the graph and set a timeout 
+ * to request again
+ */
+function requestData() {
+    $.ajax({
+        url: "<?php echo Yii::app()->baseUrl?>/charts/muestraPuntoTemperatura",
+        dataType:"json",
+        type: "post",
+        success: function(point) {
+            var series = chart.series[0],
+                shift = series.data.length > 20; // shift if the series is 
+                                                 // longer than 20
+
+            // add the point
+            chart.series[0].addPoint(point, true, shift);
+            
+            // call it again after one second
+            setTimeout(requestData, 1000);    
+        },
+        cache: false
+    });
+}
 </script>
 	
