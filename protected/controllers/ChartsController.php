@@ -26,11 +26,11 @@ class ChartsController extends Controller
         /**
 	 * @return array action filters
 	 */
-//	public function filters(){
-//            return array(
-//                    'enforcelogin',                      
-//            );
-//	}
+	public function filters(){
+            return array(
+                    'enforcelogin',                      
+            );
+	}
         /**
 	 * Llama a vista que muestra gráfico dinámico.
 	 */
