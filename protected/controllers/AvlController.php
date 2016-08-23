@@ -3,7 +3,26 @@
 class AvlController extends Controller
 {
     
-        
+        /**
+    * Acción que se ejecuta en segunda instancia para verificar si el usuario tiene sesión activa.
+    * En caso contrario no podrá acceder a los módulos del aplicativo y generará error de acceso.
+    */
+    public function filterEnforcelogin($filterChain){
+        if(Yii::app()->user->isGuest){
+            throw new CHttpException('403',"Debe loguearse primero");
+            Yii::app()->user->returnUrl = array("site/login");                                                          
+            $this->redirect(Yii::app()->user->returnUrl);
+        }
+        $filterChain->run();
+    }
+    /**
+	 * @return array action filters
+	 */
+	public function filters(){
+            return array(
+                    'enforcelogin -index muestraArrayTeperatura muestraPuntoTemperatura',                      
+            );
+	}
 	/**
 	 * Llama a vista que muestra punto.
 	 */
