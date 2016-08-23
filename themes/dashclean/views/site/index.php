@@ -27,8 +27,8 @@
             </div>
             <div class="box-content">
                 <div class="btn-group-box">
-                    <button class="btn"><i class="icon-dashboard icon-large"></i><br/>Mis vehículos</button>
-                    <button class="btn" onclick="location.href='<?php echo Yii::app()->baseUrl; ?>/avl/searchVehicle'"><i class="icon-dashboard icon-large"></i> Ubicar vehículo</button>
+<!--                    <button class="btn" onclick="location.href='<?php //echo Yii::app()->baseUrl; ?>/avl/searchVehicle'"><i class="icon-dashboard icon-large"></i><br/>Mis vehículos</button>-->
+                    <button class="btn" onclick="location.href='<?php echo Yii::app()->baseUrl; ?>/charts'"><i class="icon-dashboard icon-large"></i> Telemedición</button>
                 </div>
             </div>
         </div>                           
