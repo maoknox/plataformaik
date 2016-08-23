@@ -23,14 +23,14 @@ class ChartsController extends Controller
         
         echo CJSON::encode(array("motor"=>$subsEstados[count($subsEstados)-2],"electrovalvula"=>$subsEstados[count($subsEstados)-1],"f"=>$subsEstados[count($subsEstados)-3])); 
     }
-        /**
-	 * @return array action filters
-	 */
-	public function filters(){
-            return array(
-                    'enforcelogin',                      
-            );
-	}
+//        /**
+//	 * @return array action filters
+//	 */
+//	public function filters(){
+//            return array(
+//                    'enforcelogin -index muestraArrayTeperatura muestraPuntoTemperatura',                      
+//            );
+//	}
         /**
 	 * Llama a vista que muestra gráfico dinámico.
 	 */
