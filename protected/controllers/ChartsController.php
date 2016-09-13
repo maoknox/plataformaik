@@ -234,4 +234,19 @@ class ChartsController extends Controller
             $time=strtotime ( $dataCond["date_test"] )*1000;
             echo CJSON::encode(array("conductividad"=>(double)$dataCond["conductividad"],"time"=>$time));        
         }
+        /*****************************************************************
+         * Llama vista para mostrar datos de Estación metereológica
+         */
+        public function actionWeatherStation(){
+            $this->render("_weather_station");
+        }
+        /*****************************************************************
+         * Llama vista para mostrar datos de Estación metereológica
+         */
+        public function actionTelecontroli(){
+            $this->render("_telecontrol");
+        }
+        
+        
+        
 }

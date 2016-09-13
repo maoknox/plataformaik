@@ -386,7 +386,8 @@ $(function () {
                                     //if(timeTemp!==dataPointJson.time){
                                         var x = dataPointJson.time, // current time
                                         y = dataPointJson.temp;
-                                        series.addPoint([x, y], true, true);
+                                        shift = series.data.length > 20;
+                                        series.addPoint([x, y], false, true);
                                         timeTemp=dataPointJson.time;
 //                                    }
 //                                    else{
@@ -409,7 +410,7 @@ $(function () {
             },
             xAxis: {
                 type: 'datetime',
-                tickPixelInterval: 150
+                tickPixelInterval: 50
             },
             yAxis: {
                 title: {
@@ -438,9 +439,9 @@ $(function () {
                 name: 'Temperatura vs Tiempo',
                 data: (function () {
                     // generate an array of random data
-                    var data = [],
-                        time = (new Date()).getTime(),
-                        i=-19;
+                    var data = [];//,
+//                        time = (new Date()).getTime(),
+//                        i=-19;
                     $.ajax({
                         url: "<?php echo Yii::app()->baseUrl?>/charts/muestraArrayTemperatura",    
                         //url: "muestraArrayPuntos",                        
@@ -451,13 +452,13 @@ $(function () {
                         success: function(dataJson){  
                             timeTemp=dataJson.punto;
                            $.each(dataJson.puntos,function(key,value){ 
-                                
+                                //series.addPoint([value.time, value.temp], true, true);
                                 data.push({
                                     //x: time + i * 1000,
                                     x: value.time,
                                     y: value.temp
                                 });
-                                i++;
+                                
                            });
                            
                         },
