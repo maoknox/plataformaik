@@ -1,4 +1,4 @@
-    <?php if(Yii::app()->user->isGuest):?>
+    <?php if(!Yii::app()->user->isGuest):?>
         <div class="row">
             <div >
                 <div class="box">
@@ -33,7 +33,7 @@
                     </div>
                     <div class="box-content">
                         <div class="btn-group-box">
-                            <button class="btn-box" onclick="location.href='<?php echo Yii::app()->baseUrl; ?>/avl/searchVehicle'"><i class="icon-dashboard icon-large"></i><br/>Mis vehículos</button>
+                            <button class="btn-box" onclick="location.href='<?php echo Yii::app()->baseUrl; ?>/avl/searchVehicle'"><i class="icon-road icon-large"></i><br/>Mis vehículos</button>
                         </div>
                     </div>
              </div>
@@ -51,8 +51,8 @@
                     <div class="box-content">
                         <div class="btn-group-box">
                             <button class="btn-box" onclick="location.href='<?php echo Yii::app()->baseUrl; ?>/charts'"><i class="icon-dashboard icon-large"></i> Telecontrol</button>
-                            <button class="btn-box" onclick="location.href='<?php echo Yii::app()->baseUrl; ?>/charts/telecontroli'"><i class="icon-dashboard icon-large"></i> Telecontrol-1</button>
-                            <button class="btn-box" onclick="location.href='<?php echo Yii::app()->baseUrl; ?>/charts/weatherstation'"><i class="icon-dashboard icon-large"></i> Telemedición</button>
+<!--                            <button class="btn-box" onclick="location.href='<?php //echo Yii::app()->baseUrl; ?>/charts/telecontroli'"><i class="icon-dashboard icon-large"></i> Telecontrol-1</button>
+                            <button class="btn-box" onclick="location.href='<?php //echo Yii::app()->baseUrl; ?>/charts/weatherstation'"><i class="icon-dashboard icon-large"></i> Telemedición</button>-->
                         </div>
                     </div>
              </div>
