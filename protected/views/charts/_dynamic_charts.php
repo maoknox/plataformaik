@@ -1,31 +1,28 @@
 
-        <link href="<?php echo Yii::app()->baseUrl; ?>/css/charts/leds.css" type="text/css" media="screen, projection" rel="stylesheet" />
-	<script src="https://code.highcharts.com/highcharts.js"></script>
-        <script src="https://code.highcharts.com/highcharts-more.js"></script>
-        <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
-        <script src="<?php echo Yii::app()->baseUrl?>/js/charts/raphael-2.1.4.min.js"></script>
-        <script src="<?php echo Yii::app()->baseUrl?>/js/charts/justgage.js"></script>       
-        <script type="text/javascript" src="<?php echo Yii::app()->baseUrl?>/js/jquery.thermometer.js"></script>
-        <div class="row"  >
-            <div class="span-6 img-rounded" style=" border: 1px solid #888888; padding: 10px 10px 10px 10px" >
-                <div class="row"> <div class="span-6" >Motor <div  id="divLedMotor"></div></div></div>
-                <div class="row"> <div class="span-6" ><?php echo CHtml::button("Activar Motor",array("id"=>"btnActivaMotor" , "style"=>"display:none","onClick"=>"js:enviaComando('prendeMotor','G1')"));?><?php echo CHtml::button("Desactivar Motor",array("id"=>"btnDesactivaMotor", "style"=>"display:none","onClick"=>"js:enviaComando('apagaMotor','G0')"));?></div></div>
-                <?php echo CHtml::hiddenField("estadoMotor","",array("id"=>"estadoMotor"))?>
-            </div>
-            <div class="span-6 img-rounded" style="border: 1px solid #888888; padding: 10px 10px 10px 10px" >
-                <div class="row"> <div class="span-6">Electro válvula <div id="divLedElValv"></div></div></div>
-                <div class="row"> <div class="span-6" ><?php echo CHtml::button("Activar electro válvula",array("id"=>"btnActivaElValv","style"=>"display:none","onClick"=>"js:enviaComando('prendeElectroValvula','H1')"));?><?php echo "        " ?><?php echo CHtml::button("Desactivar electro válvula",array("id"=>"btnDesactivaElValv","style"=>"display:none","onClick"=>"js:enviaComando('apagaElectroValvula','H0')"));?></div></div>
-                <?php echo CHtml::hiddenField("estadoEValvula","",array("id"=>"estadoEValvula"))?>
-                <?php echo CHtml::hiddenField("estadoF","",array("id"=>"estadoF"))?>
-            </div>
-            <div class="span-6 img-rounded" style="border: 1px solid #888888; padding: 10px 10px 10px 10px" >
-                
-                <?php echo CHtml::button("Liberar Central",array("id"=>"btnALiberaCentral","onClick"=>"js:liberaCentral()"));?>
-                
-            </div> 
-            
-        </div>
+<link href="<?php echo Yii::app()->baseUrl; ?>/css/charts/leds.css" type="text/css" media="screen, projection" rel="stylesheet" />
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
+<script src="<?php echo Yii::app()->baseUrl?>/js/charts/raphael-2.1.4.min.js"></script>
+<script src="<?php echo Yii::app()->baseUrl?>/js/charts/justgage.js"></script>       
+<script type="text/javascript" src="<?php echo Yii::app()->baseUrl?>/js/jquery.thermometer.js"></script>
+<div class="row"  >
+    <div class="span-6 img-rounded" style=" border: 1px solid #888888; padding: 10px 10px 10px 10px" >
+        <div class="row"> <div class="span-6" >Motor <div  id="divLedMotor"></div></div></div>
+        <div class="row"> <div class="span-6" ><?php echo CHtml::button("Activar Motor",array("id"=>"btnActivaMotor" , "style"=>"display:none","onClick"=>"js:enviaComando('prendeMotor','G1')"));?><?php echo CHtml::button("Desactivar Motor",array("id"=>"btnDesactivaMotor", "style"=>"display:none","onClick"=>"js:enviaComando('apagaMotor','G0')"));?></div></div>
+        <?php echo CHtml::hiddenField("estadoMotor","",array("id"=>"estadoMotor"))?>
+    </div>
+    <div class="span-6 img-rounded" style="border: 1px solid #888888; padding: 10px 10px 10px 10px" >
+        <div class="row"> <div class="span-6">Electro válvula <div id="divLedElValv"></div></div></div>
+        <div class="row"> <div class="span-6" ><?php echo CHtml::button("Activar electro válvula",array("id"=>"btnActivaElValv","style"=>"display:none","onClick"=>"js:enviaComando('prendeElectroValvula','H1')"));?><?php echo "        " ?><?php echo CHtml::button("Desactivar electro válvula",array("id"=>"btnDesactivaElValv","style"=>"display:none","onClick"=>"js:enviaComando('apagaElectroValvula','H0')"));?></div></div>
+        <?php echo CHtml::hiddenField("estadoEValvula","",array("id"=>"estadoEValvula"))?>
+        <?php echo CHtml::hiddenField("estadoF","",array("id"=>"estadoF"))?>
+    </div>
+    <div class="span-6 img-rounded" style="border: 1px solid #888888; padding: 10px 10px 10px 10px" >
 
+        <?php echo CHtml::button("Liberar Central",array("id"=>"btnALiberaCentral","onClick"=>"js:liberaCentral()"));?>
+    </div> 
+</div>
 <hr>        
 <div class="row">
     <div class="span-6 img-rounded" style="border: 1px solid #888888;" >
@@ -114,7 +111,8 @@ $(function () {
     $(document).ready(function () {
         //consulta estado de válvulas
         
-         setInterval(function() {   $.ajax({
+        setInterval(function() {   
+            $.ajax({
                 url: "<?php echo Yii::app()->baseUrl?>/charts/estados",                        
                 dataType:"json",
                 type: "post",
@@ -386,7 +384,8 @@ $(function () {
                                     //if(timeTemp!==dataPointJson.time){
                                         var x = dataPointJson.time, // current time
                                         y = dataPointJson.temp;
-                                        series.addPoint([x, y], true, true);
+                                        shift = series.data.length > 20;
+                                        series.addPoint([x, y], false, true);
                                         timeTemp=dataPointJson.time;
 //                                    }
 //                                    else{
@@ -409,7 +408,7 @@ $(function () {
             },
             xAxis: {
                 type: 'datetime',
-                tickPixelInterval: 150
+                tickPixelInterval: 50
             },
             yAxis: {
                 title: {
@@ -438,9 +437,9 @@ $(function () {
                 name: 'Temperatura vs Tiempo',
                 data: (function () {
                     // generate an array of random data
-                    var data = [],
-                        time = (new Date()).getTime(),
-                        i=-19;
+                    var data = [];//,
+//                        time = (new Date()).getTime(),
+//                        i=-19;
                     $.ajax({
                         url: "<?php echo Yii::app()->baseUrl?>/charts/muestraArrayTemperatura",    
                         //url: "muestraArrayPuntos",                        
@@ -451,13 +450,13 @@ $(function () {
                         success: function(dataJson){  
                             timeTemp=dataJson.punto;
                            $.each(dataJson.puntos,function(key,value){ 
-                                
+                                //series.addPoint([value.time, value.temp], true, true);
                                 data.push({
                                     //x: time + i * 1000,
                                     x: value.time,
                                     y: value.temp
                                 });
-                                i++;
+                                
                            });
                            
                         },

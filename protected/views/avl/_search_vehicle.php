@@ -1,4 +1,8 @@
-<link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.css" />
+<?php
+    Yii::app()->clientScript->registerCssFile("https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.css");
+    Yii::app()->clientScript->registerScriptFile("https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.js",CClientScript::POS_HEAD);    
+?>
+<!--<link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.css" />-->
     
         <div class="row">
             <div >
@@ -8,7 +12,7 @@
             </div>
         </div>
  
-<script src="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.js"></script>
+<!--<script src="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.js"></script>-->
 <script>
 var map = L.map('map').setView([<?php echo $localization->latitude?>,<?php echo $localization->longitude?>], 15);
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFva25veCIsImEiOiJmcGJNR09jIn0.d8dHV-Ucm_dxJRbt50d1wA', {
