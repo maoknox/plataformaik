@@ -15,14 +15,14 @@ class AvlController extends Controller
         }
         $filterChain->run();
     }
-    /**
+        /**
 	 * @return array action filters
 	 */
-//	public function filters(){
-//            return array(
-//                    'enforcelogin -index muestraArrayTeperatura muestraPuntoTemperatura',                      
-//            );
-//	}
+	public function filters(){
+            return array(
+                    'enforcelogin -index muestraArrayTeperatura muestraPuntoTemperatura',                      
+            );
+	}
 	/**
 	 * Llama a vista que muestra punto.
 	 */
