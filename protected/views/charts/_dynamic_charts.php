@@ -23,9 +23,7 @@
                 
             </div> 
             <div class="img-rounded" style=" text-align: right;" >
-                
-                <strong>En alianza con </strong><img src="<?php //echo Yii::app()->baseUrl; ?>/images/logoUNAD.png" style="width: 240px;height: 50px"></img>
-                
+                 
             </div> 
             
         </div>
