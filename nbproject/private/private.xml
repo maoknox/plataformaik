@@ -6,10 +6,10 @@
             <file>file:/var/www/html/plataformaik/protected/views/charts/_dynamic_charts.php</file>
             <file>file:/var/www/html/plataformaik/themes/dashclean/views/site/index.php</file>
             <file>file:/var/www/html/plataformaik/protected/controllers/ChartsController.php</file>
-            <file>file:/var/www/html/plataformaik/css/charts/charts.css</file>
-            <file>file:/var/www/html/plataformaik/protected/views/charts/_weather_station.php</file>
+            <file>file:/var/www/html/plataformaik/protected/config/main.php</file>
+            <file>file:/var/www/html/plataformaik/protected/controllers/SiteController.php</file>
+            <file>file:/var/www/html/plataformaik/protected/controllers/AvlController.php</file>
             <file>file:/var/www/html/plataformaik/protected/views/avl/_search_vehicle.php</file>
-            <file>file:/var/www/html/plataformaik/protected/views/charts/_telecontrol.php</file>
         </group>
     </open-files>
 </project-private>
