@@ -301,7 +301,6 @@
                         //beforeSend:function (){Loading.show();},
                         success: function(dataH){  
                             humedad=dataH.humedad;
-                            console.debug("humedad-----"+humedad);
                             g2.refresh(humedad);
                         },
                         error:function (err){

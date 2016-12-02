@@ -21,7 +21,7 @@
                 <div class="span9">
                     <ul class="nav nav-pills">
                         <li>
-                            <a href="<?php echo Yii::app()->baseUrl; ?>""><i class="icon-home icon-large"></i></a>
+                            <a href="<?php echo Yii::app()->baseUrl; ?>"><i class="icon-home icon-large"></i></a>
                         </li>
                     </ul>
                     <ul class="nav nav-tabs">
@@ -49,7 +49,8 @@
                         </div>
                     </div>
                     <div class="box">
-                        <div class="box-content" >  
+                        <div class="box-content" >
+                            <?php echo CHtml::hiddenField("estadoMotor")?>
                             <?php echo CHtml::button("Activar Motor",array("id"=>"btnActivaMotor" , "style"=>"display:none","onClick"=>"js:enviaComando('prendeMotor','G1')"));?><?php echo CHtml::button("Desactivar Motor",array("id"=>"btnDesactivaMotor", "style"=>"display:none","onClick"=>"js:enviaComando('apagaMotor','G0')"));?>
                         </div>
                     </div>
@@ -66,6 +67,7 @@
                     </div>
                     <div class="box">
                         <div class="box-content" >
+                            <?php echo CHtml::hiddenField("estadoEValvula")?>
                             <?php echo CHtml::button("Activar electro válvula",array("id"=>"btnActivaElValv","style"=>"display:none","onClick"=>"js:enviaComando('prendeElectroValvula','H1')"));?><?php echo "        " ?><?php echo CHtml::button("Desactivar electro válvula",array("id"=>"btnDesactivaElValv","style"=>"display:none","onClick"=>"js:enviaComando('apagaElectroValvula','H0')"));?>                            
                         </div>
                     </div>
@@ -77,7 +79,8 @@
                         <div class="box-header">                
                             <h5>Liberar central</h5>
                         </div>
-                        <div class="box-content" >  
+                        <div class="box-content" >
+                            <?php echo CHtml::hiddenField("estadoF")?> 
                             <?php echo CHtml::button("Liberar Central",array("id"=>"btnALiberaCentral","onClick"=>"js:liberaCentral()"));?>
                         </div>
                     </div>
