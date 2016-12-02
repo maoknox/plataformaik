@@ -14,88 +14,112 @@
     Yii::app()->clientScript->registerScriptFile("https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.js",CClientScript::POS_HEAD);
     Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl."/js/general/sbPanel.js",CClientScript::POS_HEAD);
 ?>
- 
-<div class="row">
-    <div class="span4">
-        <div class="box">
-            <div class="box-header">
-                <h5>Dirección del viento</h5>
+<section class="nav nav-page" >
+    <div class="container" >
+            <div class="span7">
+                <header class="page-header">
+                    </br>
+                    
+                        Módulo Meteorología-Central
+                    
+                </header>
+            </div>
+            <div class="page-nav-options">
+                <div class="span9">
+                    <ul class="nav nav-pills">
+                        <li>
+                            <a href="<?php echo Yii::app()->baseUrl; ?>""><i class="icon-home icon-large"></i></a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-tabs">
+                        <li>
+                            <a href="#"><i class="icon-home"></i>Geozonas</a>
+                        </li>
+                        <li><a href="#">Estadísticas</a></li>
+                    </ul>
+                </div>
+            </div>
+    </div>
+</section>
+<div class="container">    
+    <div class="row">
+        <div class="span4">
+            <div class="box">
+                <div class="box-header">
+                    <h5>Dirección del viento</h5>
+                </div>
+            </div>
+            <div  class="img-rounded subcontiner">                    
+                <div id="root"></div>
             </div>
         </div>
-        <div  class="img-rounded subcontiner">                    
-            <div id="root"></div>
-        </div>
-    </div>
-    <div class="span4">
-        <div class="row">
-            <div class="span4">
-                <div class="box">
-                    <div class="box-header">
-                        <h5>Velocidad (mts/s)</h5>
+        <div class="span4">
+            
+                <div class="span4">
+                    <div class="box">
+                        <div class="box-header">
+                            <h5>Velocidad (mts/s)</h5>
+                        </div>
+                        <div  class="img-rounded subcontainerText">                    
+                            <div id="divVelViento" class="scoreBoard"></div>
+                        </div>
                     </div>
                 </div>
-                <div  class="img-rounded subcontainerText">                    
-                    <div id="divVelViento" class="scoreBoard"></div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="span4">
-                <div class="box">
-                    <div class="box-header">
-                        <h5>Lluvia (ml/h)</h5>
+                <div class="span4">
+                    <div class="box">
+                        <div class="box-header">
+                            <h5>Lluvia (ml/h)</h5>
+                        </div>
+                        <div  class="img-rounded subcontainerText">                    
+                            <div id="divVelLluvia" class="scoreBoard"></div>
+                        </div>
                     </div>
                 </div>
-                <div  class="img-rounded subcontainerText">                    
-                    <div id="divVelLluvia" class="scoreBoard"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="span4">
-        <div class="box">
-            <div class="box-header">
-                <h5>Conductividad (%)</h5>
-            </div>
-        </div>
-        <div class="img-rounded subcontiner" >                    
-            <div id="conductividad" ></div>
-        </div>
-    </div>
-    <div class="span4">
-        <div class="box">
-            <div class="box-header">                
-                <h5>Humedad (%)</h5>
-            </div>
-        </div>
-        <div class="img-rounded subcontiner" >                    
-            <div id="humedadDiv"></div>
-        </div>
-    </div>
-</div><div class="row">
-    <div class="span8">
-        <div class="box">
-            <div class="box-header">
-                <h5>Temperatura</h5>
-            </div>
-        </div>
-        <div id="temperatura" class="img-rounded subcontiner" >                    
             
         </div>
-    </div>
-    <div class="span8">
-        <div class="box">
-            <div class="box-header">
-                <h5>Ubicación</h5>
+        <div class="span4">
+            <div class="box">
+                <div class="box-header">
+                    <h5>Conductividad (%)</h5>
+                </div>
+            </div>
+            <div class="img-rounded subcontiner" >                    
+                <div id="conductividad" ></div>
             </div>
         </div>
-        <div class="img-rounded subcontiner" >                    
-            <div id="map" style="height: 300px"></div>
+        <div class="span4">
+            <div class="box">
+                <div class="box-header">                
+                    <h5>Humedad (%)</h5>
+                </div>
+            </div>
+            <div class="img-rounded subcontiner" >                    
+                <div id="humedadDiv"></div>
+            </div>
+        </div>
+    </div><div class="row">
+        <div class="span8">
+            <div class="box">
+                <div class="box-header">
+                    <h5>Temperatura</h5>
+                </div>
+            </div>
+            <div id="temperatura" class="img-rounded subcontiner" >                    
+
+            </div>
+        </div>
+        <div class="span7">
+            <div class="box">
+                <div class="box-header">
+                    <h5>Ubicación</h5>
+                </div>
+            </div>
+            <div class="img-rounded subcontiner" >                    
+                <div id="map" style="height: 300px"></div>
+            </div>
         </div>
     </div>
-    
 </div>
-
 <script>
     
     $(function () {
@@ -106,19 +130,55 @@
             $("#divVelViento").sbPanel({
                     type: 'number',
                     format: 'dd.dd',
-                value: '34.56'
+                    value: '01.53'
             });
             setInterval(function() {
-                   $("#divVelViento").sbPanel('update',{value:(Math.random() * 100).toFixed(2)});
+                /*
+                 * Consulta velocidad viento
+                 */
+                $.ajax({
+                    url: "<?php echo Yii::app()->baseUrl?>/charts/muestraVelViento",
+                    //url: "muestraPunto",                        
+                    dataType:"json",
+                    type: "post",
+                    async:true,
+                    //beforeSend:function (){Loading.show();},
+                    success: function(dataVV){  
+                        velViento=dataVV.velViento;
+                        console.debug("velocidadViento----"+velViento);
+                        $("#divVelViento").sbPanel('update',{value:'01.53'});//(velViento).toFixed(2)
+                    },
+                    error:function (err){
+                        console.debug(err);
+                    }
+                });
                 //g1.refresh(getRandomInt(50, 100));         
             }, 5000);
             $("#divVelLluvia").sbPanel({
                     type: 'number',
                     format: 'dd.dd',
-                value: '34.56'
+                value: '0.45'
             });
             setInterval(function() {
-                   $("#divVelLluvia").sbPanel('update',{value:(Math.random() * 100).toFixed(2)});
+                /*
+                 * Consulta lluvia
+                 */
+                $.ajax({
+                    url: "<?php echo Yii::app()->baseUrl?>/charts/muestraLluvia",
+                    //url: "muestraPunto",                        
+                    dataType:"json",
+                    type: "post",
+                    async:true,
+                    //beforeSend:function (){Loading.show();},
+                    success: function(dataLl){  
+                        lluvia=dataLl.lluvia;
+                        console.debug("lluvia----"+lluvia);
+                        $("#divVelLluvia").sbPanel('update',{value:'0.45'});
+                    },
+                    error:function (err){
+                        console.debug(err);
+                    }
+                });
                 //g1.refresh(getRandomInt(50, 100));         
             }, 5000);
             /*
@@ -155,8 +215,29 @@
             
             //timer stuff
             function animate(){
+                /*
+                 * 
+                 * Consulta de la dirección del viento
+                 */
+                $.ajax({
+                    url: "<?php echo Yii::app()->baseUrl?>/charts/muestraDirViento",
+                    //url: "muestraPunto",                        
+                    dataType:"json",
+                    type: "post",
+                    async:true,
+                    //beforeSend:function (){Loading.show();},
+                    success: function(dataDV){  
+                        direccionViento=dataDV.direccionViento;
+                        console.debug("dirViento----"+direccionViento);
+                        var degree=Math.random() * 360;
+                        slider.setValue(degree);
+                    },
+                    error:function (err){
+                        console.debug(err);
+                    }
+                });
                 var degree=Math.random() * 360;
-                slider.setValue(degree);
+                
                 //slider2.setValue(Math.floor(180 + 1));
             }
 
@@ -179,7 +260,22 @@
               });
               var timeCond="";
               setInterval(function() {
-                   g1.refresh(getRandomInt(50, 100));
+                    $.ajax({
+                        url: "<?php echo Yii::app()->baseUrl?>/charts/muestraConductividadWS",
+                        //url: "muestraPunto",                        
+                        dataType:"json",
+                        type: "post",
+                        async:true,
+                        //beforeSend:function (){Loading.show();},
+                        success: function(dataC){  
+                            conductividad=dataC.conductividad;
+                            console.debug("conductividad----"+conductividad);
+                            g1.refresh(conductividad);
+                        },
+                        error:function (err){
+                            console.debug(err);
+                        }
+                    });
                 //g1.refresh(getRandomInt(50, 100));         
               }, 3000);
             /*Fin Conductividad*/
@@ -196,7 +292,22 @@
               });
               var timeCond="";
               setInterval(function() {
-                   g2.refresh(getRandomInt(50, 100));
+                    $.ajax({
+                        url: "<?php echo Yii::app()->baseUrl?>/charts/muestraHumedadWS",
+                        //url: "muestraPunto",                        
+                        dataType:"json",
+                        type: "post",
+                        async:true,
+                        //beforeSend:function (){Loading.show();},
+                        success: function(dataH){  
+                            humedad=dataH.humedad;
+                            console.debug("humedad-----"+humedad);
+                            g2.refresh(humedad);
+                        },
+                        error:function (err){
+                            console.debug(err);
+                        }
+                    });
                 //g1.refresh(getRandomInt(50, 100));         
               }, 3000);
             /*Fin Conductividad*/
@@ -272,12 +383,9 @@
                 }],
                 exporting: {
                     enabled: false
-                },
-                
-                
+                }
             });  
         });
-
     });
 /**
  * Request data from the server, add it to the graph and set a timeout 
@@ -295,10 +403,14 @@ function requestData() {
 
             // add the point
             //series.addPoint([x, y], true, true);
+            var date = new Date(point.tempbd*1000);
             chart.series[0].addPoint([point.time, point.temp], true, shift);
             
             // call it again after one second
             setTimeout(requestData, 5000);    
+        },
+        error:function (err){
+            console.debug(err);
         },
         cache: false
     });

@@ -246,7 +246,75 @@ class ChartsController extends Controller
         public function actionTelecontroli(){
             $this->render("_telecontrol");
         }
+        /*
+         * Datos de la estación metereologica
+         */
+        /*
+         * velocidad del viento
+         */
+        public function actionMuestraVelViento(){
+            $dataVelViento=Test::model()->consultaVelViento();
+            echo CJSON::encode(array("velViento"=>(double)$dataVelViento));
+        }
+        /*
+         * precipitación 
+         */
+        public function actionMuestraLluvia(){
+            $dataLluvia=Test::model()->consultaLluvia();
+            echo CJSON::encode(array("lluvia"=>(double)$dataLluvia));
+        }
+         /*
+         * precipitación 
+         */
+        public function actionMuestraDirViento(){
+            $dataDirViento=Test::model()->consultaDirViento();
+            echo CJSON::encode(array("direccionViento"=>(double)$dataDirViento));
+        }
+         /*
+         * precipitación 
+         */
+        public function actionMuestraConductividadWS(){
+            $dataConductividad=rand (0 , 100 );
+            echo CJSON::encode(array("conductividad"=>(double)$dataConductividad));
+        }
+         /*
+         * precipitación 
+         */
+        public function actionMuestraHumedadWS(){
+            $dataHumedad=Test::model()->consultaHumedad();
+            echo CJSON::encode(array("humedad"=>(double)$dataHumedad));
+        }
+        /*
+         * Muestra array de puntos de un rango de fecha
+         */
+        public function actionMuestraPuntoWS(){
+            $dataTemp=Test::model()->consultaPTemperaturaWS(); 
+            $time=strtotime($dataTemp["tiempo"])*1000;
+            echo CJSON::encode(array("temp"=>(double)$dataTemp["temperatura"],"time"=>$time,"tempbd"=>strtotime('2016-11-19 12:46:43.415')*1000,"tempi"=>$dataTemp["tiempo"]));  
+        }
         
+        /*
+         * Muestra temperaturas de estación metereológica
+         */
+        public function actionMuestraArrayTemperaturaWS(){ 
+            $modeloTemperatura=  Test::model()->consultaHistoricoTemperaturaWS();
+            $ultimoPunto=  Test::model()->consultaPuntoTemperaturaWS();
+            $data["puntos"]=array();
+            $i=0;
+            foreach($modeloTemperatura as $dataTemperatura){
+                $time=strtotime( $dataTemperatura["date_test"] )*1000;                             
+                $data["puntos"][]=array("temp"=>(double)$dataTemperatura["temperatura"],"time"=>$time,"tempbd"=>$dataTemperatura["date_test"]);
+            }       
+            $data["punto"]=strtotime ( $ultimoPunto["date_test"] )*1000;
+            echo CJSON::encode($data);           
+        }
         
-        
+        /*
+         * Muestra última medición de temperatura de estación metereológica
+         */
+        public function actionMuestraPuntoTemperaturaWS(){ 
+            $dataTemperatura=  Test::model()->consultaPuntoTemperaturaWS();
+            $time=strtotime ($dataTemperatura["date_test"])*1000;
+            echo CJSON::encode(array("temp"=>(double)$dataTemperatura["temperatura"],"time"=>$time));
+        }
 }

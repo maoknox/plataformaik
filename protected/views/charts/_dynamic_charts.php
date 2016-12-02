@@ -5,55 +5,130 @@
         <script src="<?php echo Yii::app()->baseUrl?>/js/charts/raphael-2.1.4.min.js"></script>
         <script src="<?php echo Yii::app()->baseUrl?>/js/charts/justgage.js"></script>       
         <script type="text/javascript" src="<?php echo Yii::app()->baseUrl?>/js/jquery.thermometer.js"></script>
-        <div class="row"  >
-            <div class="span-6 img-rounded" style=" border: 1px solid #888888; padding: 10px 10px 10px 10px" >
-                <div class="row"> <div class="span-6" >Motor <div  id="divLedMotor"></div></div></div>
-                <div class="row"> <div class="span-6" ><?php echo CHtml::button("Activar Motor",array("id"=>"btnActivaMotor" , "style"=>"display:none","onClick"=>"js:enviaComando('prendeMotor','G1')"));?><?php echo CHtml::button("Desactivar Motor",array("id"=>"btnDesactivaMotor", "style"=>"display:none","onClick"=>"js:enviaComando('apagaMotor','G0')"));?></div></div>
-                <?php echo CHtml::hiddenField("estadoMotor","",array("id"=>"estadoMotor"))?>
+        
+    
+    <section class="nav nav-page" >
+        <div class="container" >
+            <div class="span7">
+                <header class="page-header">
+                    </br>
+                    
+                        Módulo Meteorología-Central
+                    
+                </header>
             </div>
-            <div class="span-6 img-rounded" style="border: 1px solid #888888; padding: 10px 10px 10px 10px" >
-                <div class="row"> <div class="span-6">Electro válvula <div id="divLedElValv"></div></div></div>
-                <div class="row"> <div class="span-6" ><?php echo CHtml::button("Activar electro válvula",array("id"=>"btnActivaElValv","style"=>"display:none","onClick"=>"js:enviaComando('prendeElectroValvula','H1')"));?><?php echo "        " ?><?php echo CHtml::button("Desactivar electro válvula",array("id"=>"btnDesactivaElValv","style"=>"display:none","onClick"=>"js:enviaComando('apagaElectroValvula','H0')"));?></div></div>
-                <?php echo CHtml::hiddenField("estadoEValvula","",array("id"=>"estadoEValvula"))?>
-                <?php echo CHtml::hiddenField("estadoF","",array("id"=>"estadoF"))?>
+            <div class="page-nav-options">
+                <div class="span9">
+                    <ul class="nav nav-pills">
+                        <li>
+                            <a href="<?php echo Yii::app()->baseUrl; ?>""><i class="icon-home icon-large"></i></a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-tabs">
+                        <li>
+                            <a href="#"><i class="icon-home"></i>Geozonas</a>
+                        </li>
+                        <li><a href="#">Estadísticas</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="span-6 img-rounded" style="border: 1px solid #888888; padding: 10px 10px 10px 10px" >
-                
-                <?php echo CHtml::button("Liberar Central",array("id"=>"btnALiberaCentral","onClick"=>"js:liberaCentral()"));?>
-                
-            </div> 
-            <div class="img-rounded" style=" text-align: right;" >
-                 
-            </div> 
+    </div>
+</section>    
+        
+    <div class="container">  
+        
+        <!--motor-->
+        <div class="row" style="margin-left:30px "  >
+            <div class="span-6">
+                    <div class="box">
+                        <div class="box-header">                
+                            <h5>Motor</h5>
+                        </div>
+                        <div class="box-content" >  
+                            <div  id="divLedMotor"></div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="box-content" >  
+                            <?php echo CHtml::button("Activar Motor",array("id"=>"btnActivaMotor" , "style"=>"display:none","onClick"=>"js:enviaComando('prendeMotor','G1')"));?><?php echo CHtml::button("Desactivar Motor",array("id"=>"btnDesactivaMotor", "style"=>"display:none","onClick"=>"js:enviaComando('apagaMotor','G0')"));?>
+                        </div>
+                    </div>
+            </div>
+            <!--electro válvula-->
+            <div class="span-6">
+                    <div class="box">
+                        <div class="box-header">                
+                            <h5>Electro válvula</h5>
+                        </div>
+                        <div class="box-content" >  
+                            <div  id="divLedElValv"></div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="box-content" >
+                            <?php echo CHtml::button("Activar electro válvula",array("id"=>"btnActivaElValv","style"=>"display:none","onClick"=>"js:enviaComando('prendeElectroValvula','H1')"));?><?php echo "        " ?><?php echo CHtml::button("Desactivar electro válvula",array("id"=>"btnDesactivaElValv","style"=>"display:none","onClick"=>"js:enviaComando('apagaElectroValvula','H0')"));?>                            
+                        </div>
+                    </div>
+            </div>
             
+            <!--liberar central-->
+            <div class="span-6">
+                    <div class="box">
+                        <div class="box-header">                
+                            <h5>Liberar central</h5>
+                        </div>
+                        <div class="box-content" >  
+                            <?php echo CHtml::button("Liberar Central",array("id"=>"btnALiberaCentral","onClick"=>"js:liberaCentral()"));?>
+                        </div>
+                    </div>
+            </div>
         </div>
 
-<hr>        
-<div class="row">
-    <div class="span-6 img-rounded" style="border: 1px solid #888888;" >
-        <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto;width:400px"></div>
-    </div>        
-    <div class="span-6 img-rounded" style="border: 1px solid #888888; width: 15em">
-        <div id="g1" ></div>
-    </div>
-    <div class="span-6 img-rounded" style="border: 1px solid #888888;  padding: 20px 20px 20px 20px;" >
-        <div><h4>HUMEDAD</h4></div>
-        <div><h2 id="valorHumedad"></h2></div>
-        <div id="humedad"></div>
-    </div>
-    <div class="span-6 img-rounded" style="border: 1px solid #888888;" >
-        
-        <div id="ph" style="min-width: 210px; max-width: 300; height: 200px; margin: 0 auto" >bla</div>
-        <div class="span-6 img-rounded" style="border: 1px solid #888888;  padding: 20px 20px 20px 20px;" >
-            <div><div><span style=" background-color: #55BF3B">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> -Ácido </div></div>
-            <div><div><span style=" background-color: #DDDF0D">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> -Neutro</div></div>
-            <div><div><span style=" background-color: #DF5353">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> -Alcalino</div></div>        
+        <hr>        
+        <div class="row" style="margin-left:10px ">
+            <div class="span-6">
+                <div class="box">
+                    <div class="box-content" >  
+                        <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto;width:400px"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="span-6" style="max-width: 15em;min-width: 15em">
+                    <div class="box">
+                        <div class="box-content" >  
+                            <div id="g1" ></div>
+                        </div>
+                    </div>
+            </div>
+            
+            <div class="span-6">
+                <div class="box">
+                    <div class="box-header">                
+                        <h5>HUMEDAD</h5>
+                    </div>
+                    <div class="box-content" >  
+                        <div><h2 id="valorHumedad"></h2></div>
+                        <div id="humedad"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="span-6">
+                <div class="box">
+                    <div class="box-content" >  
+                        <div id="ph" style="min-width: 210px; max-width: 300; height: 200px; margin: 0 auto" >bla</div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="box" style="margin: auto 0">
+                    <div><div><span style=" background-color: #55BF3B">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> -Ácido </div></div>
+                    <div><div><span style=" background-color: #DDDF0D">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> -Neutro</div></div>
+                    <div><div><span style=" background-color: #DF5353">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> -Alcalino</div></div>   
+                </div>
+            </div>
         </div>
-        
+        <hr>
     </div>
-</div>
-<hr>
-
 <script>
 function enviaComando(action,state){
     
