@@ -281,7 +281,8 @@ class ChartsController extends Controller
          * precipitación 
          */
         public function actionMuestraHumedadWS(){
-            $dataHumedad=Test::model()->consultaHumedad();
+//            $dataHumedad=Test::model()->consultaHumedad();
+            $dataHumedad=rand (0 , 100 );
             echo CJSON::encode(array("humedad"=>(double)$dataHumedad));
         }
         /*
