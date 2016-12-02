@@ -192,7 +192,7 @@ a:hover {
 [class*="span"] {
   float: left;
   min-height: 1px;
-  margin-left: 20px;
+  margin-left: 10px;
 }
 .container,
 .navbar-static-top .container,
@@ -321,7 +321,7 @@ a:hover {
 [class*="span"] {
   float: left;
   min-height: 1px;
-  margin-left: 20px;
+  margin-left: 10px;
 }
 .container,
 .navbar-static-top .container,
@@ -963,7 +963,7 @@ p {
   line-height: 30px;
 }
 small {
-  font-size: 85%;
+  font-size: 100%;
 }
 strong {
   font-weight: bold;
@@ -1517,7 +1517,7 @@ textarea,
   margin-left: 0;
 }
 .controls-row [class*="span"] + [class*="span"] {
-  margin-left: 20px;
+  margin-left: 10px;
 }
 input.span16, textarea.span16, .uneditable-input.span16 {
   width: 958px;
@@ -1573,7 +1573,7 @@ textarea,
   margin-left: 0;
 }
 .controls-row [class*="span"] + [class*="span"] {
-  margin-left: 20px;
+  margin-left: 10px;
 }
 input.span16, textarea.span16, .uneditable-input.span16 {
   width: 958px;
@@ -3916,7 +3916,7 @@ input[type="submit"].btn.btn-mini {
   float: left;
   display: block;
   padding: 10px 20px 10px;
-  margin-left: -20px;
+  margin-left: -50px;
   font-size: 20px;
   font-weight: 200;
   color: #e1e1e1;
@@ -4032,6 +4032,9 @@ input[type="submit"].btn.btn-mini {
   left: 0;
   z-index: 1030;
   margin-bottom: 0;
+  -webkit-box-shadow: 0 4px 4px -2px #000000;
+   -moz-box-shadow: 0 4px 4px -2px #000000;
+        box-shadow: 0 4px 4px -2px #000000;
 }
 .navbar-fixed-top .navbar-inner,
 .navbar-static-top .navbar-inner {
@@ -8201,7 +8204,7 @@ body > #body-container {
   [class*="span"] {
     float: left;
     min-height: 1px;
-    margin-left: 30px;
+/*    margin-left: 15px;*/
   }
   .container,
   .navbar-static-top .container,
@@ -8306,7 +8309,7 @@ body > #body-container {
     margin-left: 106px;
   }
   .row {
-    margin-left: -30px;
+    margin-left: 30px;
     *zoom: 1;
   }
   .row:before,
@@ -8330,7 +8333,7 @@ body > #body-container {
   [class*="span"] {
     float: left;
     min-height: 1px;
-    margin-left: 30px;
+    margin-left: 15px;
   }
   .container,
   .navbar-static-top .container,
@@ -8896,7 +8899,7 @@ body > #body-container {
     margin-left: 0;
   }
   .controls-row [class*="span"] + [class*="span"] {
-    margin-left: 30px;
+    margin-left: 15px;
   }
   input.span16, textarea.span16, .uneditable-input.span16 {
     width: 1172px;
@@ -8952,7 +8955,7 @@ body > #body-container {
     margin-left: 0;
   }
   .controls-row [class*="span"] + [class*="span"] {
-    margin-left: 30px;
+    margin-left: 15px;
   }
   input.span16, textarea.span16, .uneditable-input.span16 {
     width: 1172px;
@@ -9038,7 +9041,7 @@ body > #body-container {
   [class*="span"] {
     float: left;
     min-height: 1px;
-    margin-left: 20px;
+     margin-left: 10px;
   }
   .container,
   .navbar-static-top .container,
@@ -9167,7 +9170,7 @@ body > #body-container {
   [class*="span"] {
     float: left;
     min-height: 1px;
-    margin-left: 20px;
+    margin-left: 10px;
   }
   .container,
   .navbar-static-top .container,
@@ -9733,7 +9736,7 @@ body > #body-container {
     margin-left: 0;
   }
   .controls-row [class*="span"] + [class*="span"] {
-    margin-left: 20px;
+    margin-left: 10px;
   }
   input.span16, textarea.span16, .uneditable-input.span16 {
     width: 734px;
@@ -9789,7 +9792,7 @@ body > #body-container {
     margin-left: 0;
   }
   .controls-row [class*="span"] + [class*="span"] {
-    margin-left: 20px;
+    margin-left: 10px;
   }
   input.span16, textarea.span16, .uneditable-input.span16 {
     width: 734px;
@@ -11459,5 +11462,5 @@ body > #body-container {
 *
 ***/
 #body-content {
-  padding-top: 110px;
+  padding-top: 43px;
 }
