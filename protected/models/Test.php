@@ -115,7 +115,7 @@ class Test extends CActiveRecord
          */
         public function consultaHistoricoTemperatura(){
             $connect=Yii::app()->db;
-            $sql="select date_test, temperatura from test order by date_test desc limit 5";
+            $sql="select date_test, temperatura from test where id_device_test='010' order by date_test desc limit 5";
             $query=$connect->createCommand($sql);
             $read=$query->query();
             $res=$read->readAll();
@@ -127,7 +127,7 @@ class Test extends CActiveRecord
          */
         public function consultaPuntoTemperatura(){
             $connect=Yii::app()->db;
-            $sql="select date_test, temperatura from test order by date_test desc limit 1";
+            $sql="select date_test, temperatura from test where id_device_test='010' order by date_test desc limit 1";
             $query=$connect->createCommand($sql);
             $read=$query->query();
             $res=$read->read();
@@ -139,7 +139,7 @@ class Test extends CActiveRecord
          */
         public function consultaPuntoPh(){
             $connect=Yii::app()->db;
-            $sql="select date_test, ph from test order by date_test desc limit 1";
+            $sql="select date_test, ph from test where id_device_test='010' order by date_test desc limit 1";
             $query=$connect->createCommand($sql);
             $read=$query->query();
             $res=$read->read();
@@ -151,7 +151,7 @@ class Test extends CActiveRecord
          */
         public function consultaPuntoHumedad(){
             $connect=Yii::app()->db;
-            $sql="select date_test, humedad from test order by date_test desc limit 1";
+            $sql="select date_test, humedad from test where id_device_test='010' order by date_test desc limit 1";
             $query=$connect->createCommand($sql);
             $read=$query->query();
             $res=$read->read();
@@ -163,7 +163,7 @@ class Test extends CActiveRecord
          */
         public function consultaPuntoConductividad(){
             $connect=Yii::app()->db;
-            $sql="select date_test, conductividad from test order by date_test desc limit 1";
+            $sql="select date_test, conductividad from test where id_device_test='010' order by date_test desc limit 1";
             $query=$connect->createCommand($sql);
             $read=$query->query();
             $res=$read->read();
@@ -175,11 +175,106 @@ class Test extends CActiveRecord
          */
         public function consultaEstados(){
             $connect=Yii::app()->db;
-            $sql="select trama_datos from test order by date_test desc limit 1";
+            $sql="select trama_datos from test where id_device_test='010' order by date_test desc limit 1";
             $query=$connect->createCommand($sql);
             $read=$query->query();
             $res=$read->read();
             $read->close();
             return $res;
         }
+        /*
+         * datos de la estación metereológica
+         */
+        /*
+         * velocidad del viento
+         */
+        public function consultaVelViento(){
+            $connect=Yii::app()->db;
+            $sql="select trama_datos from test where id_device_test='020' order by date_test desc limit 1";
+            $query=$connect->createCommand($sql);
+            $read=$query->query();
+            $res=$read->read();
+            $read->close();
+            $trama=  explode(",", $res['trama_datos']);
+            return $trama[6];
+        }
+        /*
+         * lluvia
+         */
+        public function consultaLluvia(){
+            $connect=Yii::app()->db;
+            $sql="select trama_datos from test where id_device_test='020' order by date_test desc limit 1";
+            $query=$connect->createCommand($sql);
+            $read=$query->query();
+            $res=$read->read();
+            $read->close();
+            $trama=  explode(",", $res['trama_datos']);
+            return $trama[7];
+        }
+        /*
+         * lluvia
+         */
+        public function consultaDirViento(){
+            $connect=Yii::app()->db;
+            $sql="select trama_datos from test where id_device_test='020' order by date_test desc limit 1";
+            $query=$connect->createCommand($sql);
+            $read=$query->query();
+            $res=$read->read();
+            $read->close();
+            $trama=  explode(",", $res['trama_datos']);
+            return $trama[4];
+        }
+         /*
+         * lluvia
+         */
+        public function consultaHumedad(){
+            $connect=Yii::app()->db;
+            $sql="select trama_datos from test where id_device_test='020' order by date_test desc limit 1";
+            $query=$connect->createCommand($sql);
+            $read=$query->query();
+            $res=$read->read();
+            $read->close();
+            $trama=  explode(",", $res['trama_datos']);
+            return $trama[10];
+        }
+         /*
+         * lluvia
+         */
+        public function consultaPTemperaturaWS(){
+            $connect=Yii::app()->db;
+            $sql="select date_test,trama_datos from test where id_device_test='020' order by date_test desc limit 1";
+            $query=$connect->createCommand($sql);
+            $read=$query->query();
+            $res=$read->read();
+            $read->close();
+            $trama=  explode(",", $res['trama_datos']);
+            $arrayDatosTemp=array('temperatura'=>$trama[9],'tiempo'=>$res['date_test']);
+//            [{'temperatura:'$trama[10]},{'tiempo:'$res['trama_datos']}];
+            return $arrayDatosTemp;
+        }
+        /*
+         * Consulta histórico de temperatura a lo sumo 21 datos para inicializar la gráfica de estación metereológica
+         */
+        public function consultaHistoricoTemperaturaWS(){
+            $connect=Yii::app()->db;
+            $sql="select date_test, temperatura from test where id_device_test='020' order by date_test desc limit 5";
+            $query=$connect->createCommand($sql);
+            $read=$query->query();
+            $res=$read->readAll();
+            $read->close();
+            return $res;
+        }
+        /*
+         * Consulta última medición de temperatura de estación metereológica
+         */
+        public function consultaPuntoTemperaturaWS(){
+            $connect=Yii::app()->db;
+            $sql="select date_test, temperatura from test where id_device_test='020' order by date_test desc limit 1";
+            $query=$connect->createCommand($sql);
+            $read=$query->query();
+            $res=$read->read();
+            $read->close();
+            return $res;
+        }
+        
 }
