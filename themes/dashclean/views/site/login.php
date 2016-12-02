@@ -46,7 +46,7 @@ $this->breadcrumbs=array(
         </div>
         <div class="span3"></div>
     </div>  
-    <div class="signin-row row">
+<!--    <div class="signin-row row">
         <div class="span4"></div>
         <div class="span8">
             <div class="well well-small well-shadow">
@@ -55,5 +55,5 @@ $this->breadcrumbs=array(
             </div>
         </div>
         <div class="span8"></div>
-    </div>  
+    </div>  -->
  </div>
