@@ -38,8 +38,10 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="<?php echo Yii::app()->baseUrl; ?>" class="brand"><i>Plataforma <img src="<?php echo Yii::app()->baseUrl; ?>/images/gifik.gif" style="width: 45px;height: 25px"></img></i></a>
-                    <div id="app-nav-top-bar" class="nav-collapse">                      
+                    <a href="<?php echo Yii::app()->baseUrl; ?>" class="brand"><i>Plataforma <img src="<?php echo Yii::app()->baseUrl; ?>/images/gifik.gif" style="width: 35px;height: 20px"></img></i></a>
+
+                    <div id="app-nav-top-bar" class="nav-collapse">
+                        
                         <ul class="nav pull-right">
                             <?php if(!Yii::app()->user->isGuest):?>
                                  <?php echo '<li>'.CHtml::link("Logout",array('site/logout')).'</li>';?>
@@ -60,6 +62,7 @@
                             <?php if(Yii::app()->user->isGuest):?>
                                 <?php echo '<li>'.CHtml::link("Login",array('/site/login')).'</li>';?>
                             <?php endif;?>
+                            
                         </ul>
                     </div>
                 </div>
@@ -67,34 +70,11 @@
         </div>
         <div id="body-container">
             <div id="body-content">               
-                <div class="body-nav body-nav-horizontal body-nav-fixed">
-                    <div class="container">
-                        <?php if(!Yii::app()->user->isGuest):?>
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    <i class="icon-dashboard icon-large"></i> AVL
-                                </a>
-                            </li>
-                             <li>
-                                <a href="#">
-                                    <i class="icon-tasks icon-large"></i> Telemedición  
-                                </a>
-                            </li>
-                         </ul>
-                    <?php else:?>                     
-                    <div class="span7">
-                        <header class="page-header">
-                            <h4 style="color: whitesmoke">BIENVENIDO A PLATAFORMA IK</h4>
-                            <h4 style="color: whitesmoke">INGETRONIK</h4>
-                        </header>
-                    </div>
-                    <?php endif;?>
-                    </div>
-                </div>
-                <section class="page container">
+                
+                <!--<section class="container">-->
+                    
                     <?php echo $content; ?>
-                </section>
+                <!--</section>-->
             </div>
         </div>
 
