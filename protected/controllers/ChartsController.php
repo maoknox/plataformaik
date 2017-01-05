@@ -79,6 +79,7 @@ class ChartsController extends Controller
             $ultimoPunto=  Test::model()->consultaPuntoTemperatura();
             $data["puntos"]=array();
             $i=0;
+            usort($modeloTemperatura,array($this, "ordenaFechaAsc"));
             foreach($modeloTemperatura as $dataTemperatura){
                 $time=strtotime ( $dataTemperatura["date_test"] )*1000;                             
                 $data["puntos"][]=array("temp"=>(double)$dataTemperatura["temperatura"],"time"=>$time,"tempbd"=>$dataTemperatura["temperatura"]);
@@ -86,6 +87,16 @@ class ChartsController extends Controller
             $data["punto"]=strtotime ( $ultimoPunto["date_test"] )*1000;
             echo CJSON::encode($data);           
         }
+        
+        private function ordenaFechaAsc($date1,$date2){
+            $date1 = strtotime($date1["date_test"]);
+            $date2 = strtotime($date2["date_test"]);
+            if($date1 == $date2) {
+                return 0;
+            }
+            return $date1 < $date2 ? -1 : 1 ;
+        }
+        
         /*
          * Envía comando a central
          */
@@ -281,17 +292,17 @@ class ChartsController extends Controller
          * precipitación 
          */
         public function actionMuestraHumedadWS(){
-//            $dataHumedad=Test::model()->consultaHumedad();
-            $dataHumedad=rand (0 , 100 );
+            $dataHumedad=Test::model()->consultaHumedad();
+//            $dataHumedad=rand (0 , 100 );
             echo CJSON::encode(array("humedad"=>(double)$dataHumedad));
         }
         /*
          * Muestra array de puntos de un rango de fecha
          */
         public function actionMuestraPuntoWS(){
-            $dataTemp=Test::model()->consultaPTemperaturaWS(); 
+            $dataTemp=Test::model()->consultaPTemperaturaWS();
             $time=strtotime($dataTemp["tiempo"])*1000;
-            echo CJSON::encode(array("temp"=>(double)$dataTemp["temperatura"],"time"=>$time,"tempbd"=>strtotime('2016-11-19 12:46:43.415')*1000,"tempi"=>$dataTemp["tiempo"]));  
+            echo CJSON::encode(array("temp"=>(double)$dataTemp["temperatura"],"time"=>$time,"tempbd"=>strtotime('2016-11-19 12:46:43.415')*1000,"timei"=>$dataTemp["tiempo"]));  
         }
         
         /*
@@ -302,6 +313,7 @@ class ChartsController extends Controller
             $ultimoPunto=  Test::model()->consultaPuntoTemperaturaWS();
             $data["puntos"]=array();
             $i=0;
+            usort($modeloTemperatura,array($this, "ordenaFechaAsc"));
             foreach($modeloTemperatura as $dataTemperatura){
                 $time=strtotime( $dataTemperatura["date_test"] )*1000;                             
                 $data["puntos"][]=array("temp"=>(double)$dataTemperatura["temperatura"],"time"=>$time,"tempbd"=>$dataTemperatura["date_test"]);
