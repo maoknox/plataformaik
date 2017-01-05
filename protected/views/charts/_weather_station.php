@@ -1,18 +1,13 @@
 <?php
     Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/charts/charts.css');
-    Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/charts/leds.css');
-    Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/general/sbPanel.css');
-    Yii::app()->clientScript->registerCssFile("https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.css"); 
+   Yii::app()->clientScript->registerCssFile("https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.css"); 
     Yii::app()->clientScript->registerScriptFile("https://code.highcharts.com/highcharts.js",CClientScript::POS_HEAD);
     Yii::app()->clientScript->registerScriptFile("https://code.highcharts.com/highcharts-more.js",CClientScript::POS_HEAD);
-    Yii::app()->clientScript->registerScriptFile("https://code.jquery.com/ui/1.10.4/jquery-ui.min.js",CClientScript::POS_HEAD);
     Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl."/js/charts/raphael-2.1.4.min.js",CClientScript::POS_HEAD);
     Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl."/js/charts/justgage.js",CClientScript::POS_HEAD);
-    Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl."/js/jquery.thermometer.js",CClientScript::POS_HEAD);
     Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl."/js/charts/mscorlib.js",CClientScript::POS_HEAD);
     Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl."/js/charts/PerfectWidgets.js",CClientScript::POS_HEAD);
     Yii::app()->clientScript->registerScriptFile("https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.js",CClientScript::POS_HEAD);
-    Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl."/js/general/sbPanel.js",CClientScript::POS_HEAD);
 ?>
 <section class="nav nav-page" >
     <div class="container" >
@@ -124,14 +119,15 @@
     
     $(function () {
         $(document).ready(function () {
+		Highcharts.setOptions({
+            global: {
+                useUTC: false
+            }
+        });
             /*
              * velocidad del viento y nivel de lluvia
              */
-            $("#divVelViento").sbPanel({
-                    type: 'number',
-                    format: 'dd.dd',
-                    value: '01.53'
-            });
+           
             setInterval(function() {
                 /*
                  * Consulta velocidad viento
@@ -145,8 +141,8 @@
                     //beforeSend:function (){Loading.show();},
                     success: function(dataVV){  
                         velViento=dataVV.velViento;
-                        console.debug("velocidadViento----"+velViento);
-                        $("#divVelViento").sbPanel('update',{value:'01.53'});//(velViento).toFixed(2)
+                        console.debug("velocidadViento----"+(velViento).toFixed(2));
+                        $("#divVelViento").text(dataVV.velViento);//(velViento).toFixed(2)
                     },
                     error:function (err){
                         console.debug(err);
@@ -154,11 +150,7 @@
                 });
                 //g1.refresh(getRandomInt(50, 100));         
             }, 5000);
-            $("#divVelLluvia").sbPanel({
-                    type: 'number',
-                    format: 'dd.dd',
-                value: '0.45'
-            });
+            
             setInterval(function() {
                 /*
                  * Consulta lluvia
@@ -173,7 +165,7 @@
                     success: function(dataLl){  
                         lluvia=dataLl.lluvia;
                         console.debug("lluvia----"+lluvia);
-                        $("#divVelLluvia").sbPanel('update',{value:'0.45'});
+                        $("#divVelLluvia").text(dataLl.lluvia);
                     },
                     error:function (err){
                         console.debug(err);
@@ -230,7 +222,7 @@
                         direccionViento=dataDV.direccionViento;
                         console.debug("dirViento----"+direccionViento);
                         var degree=Math.random() * 360;
-                        slider.setValue(degree);
+                        slider.setValue(direccionViento);
                     },
                     error:function (err){
                         console.debug(err);
@@ -316,37 +308,44 @@
                         return "#"+(0x1000000+(Math.round((R2-R1)*p)+R1)*0x10000+(Math.round((G2-G1)*p)+G1)*0x100+(Math.round((B2-B1)*p)+B1)).toString(16).slice(1);
             }
         
-            $('#humedad').thermometer( {
-                startValue: 0,
-                height: 300,
-                width: "100%",
-                bottomText: "0%",
-                topText: "100%",
-                animationSpeed: 300,
-                maxValue: "100",
-                minValue: "0",
-                pathToSVG: "<?php echo Yii::app()->baseUrl?>/svg/thermo-bottom.svg",
-                valueChanged: function(value) {
-                        $('#valorHumedad').text(value.toFixed(2)+" °C");
-                },
-                liquidColour: function( value ) {
-                        return blendColors("#ff7700","#ff0000", value / 8); 
-                },
-            });
             
-            var timeHumedad="";
-            window.setInterval( function() {                                      
-                $('#humedad').thermometer( 'setValue', 20 );
-            }, 3000 );
-            
-            chart = new Highcharts.Chart({
+            $('#temperatura').highcharts({
                 chart: {
-                    renderTo: 'temperatura',
                     defaultSeriesType: 'spline',
                     animation: Highcharts.svg, // don't animate in old IE
                     marginRight: 10,
                     events: {
-                        load: requestData
+                        load: function () {
+                            // set up the updating of the chart each second
+                            var series = this.series[0];
+                            setInterval(function () {                           
+                                $.ajax({
+                                    url: "<?php echo Yii::app()->baseUrl?>/charts/muestraPuntoWS",
+                                    //url: "muestraPunto",                        
+                                    dataType:"json",
+                                    type: "post",
+                                    //beforeSend:function (){Loading.show();},
+                                    success: function(dataPointJson){ 
+                                            var x = dataPointJson.time, // current time
+                                            y = dataPointJson.temp;
+                                            series.addPoint([x, y], true, true);
+                                            timeTemp=dataPointJson.time;
+    //                                    
+
+                                        console.debug(dataPointJson);
+                                    },
+                                    error:function (err){
+                                        console.debug(err);
+                                    }
+                                });
+
+                            }, 15000);
+    //                        setInterval(function () {
+    //                            var x = (new Date()).getTime(), // current time
+    //                                y = Math.random();
+    //                            series.addPoint([x, y], true, true);
+    //                        }, 1000);
+                        }
                     }
                 },
                 title: {
@@ -354,7 +353,7 @@
                 },
                 xAxis: {
                     type: 'datetime',
-                    tickPixelInterval: 50
+                    tickPixelInterval: 150
                 },
                 yAxis: {
                     title: {
@@ -376,13 +375,51 @@
                 legend: {
                     enabled: true
                 },
-                series: [{
-                    name: 'Temperatura vs Tiempo',
-                    data:  []
-                }],
                 exporting: {
                     enabled: false
-                }
+                },
+                series: [{
+                    name: 'Temperatura vs Tiempo',
+                    data: (function () {
+                        // generate an array of random data
+                        var data = [],
+                            time = (new Date()).getTime(),
+                            i=-19;
+                        $.ajax({
+                            url: "<?php echo Yii::app()->baseUrl?>/charts/muestraArrayTemperaturaWS",    
+                            //url: "muestraArrayPuntos",                        
+                            dataType:"json",
+                            type: "post",
+                            async:false,
+                            //beforeSend:function (){Loading.show();},
+                            success: function(dataJson){
+                                timeTemp=dataJson.punto;
+
+                               $.each(dataJson.puntos,function(key,value){ 
+                                    var d=new Date(value.time);
+                                    data.push({
+                                        x: (d).getTime(),
+                                        y: value.temp
+                                    });
+                               });
+                            },
+                            error:function (err){
+                                console.debug(err);
+                            }
+                        }); 
+                               return data;
+    //                    for (i = -19; i <= 0; i += 1) {
+    //                        var dTime=time + i * 1000;
+    //                        console.debug(new Date(dTime));
+    //                                data.push({
+    //                                    x:dTime,
+    //                                    y: Math.random()
+    //                                });
+    //                            }
+    //                           console.debug(data);
+    //                            return data;
+                    }())
+                }]
             });  
         });
     });
@@ -392,7 +429,7 @@
  */
 function requestData() {
     $.ajax({
-        url: "<?php echo Yii::app()->baseUrl?>/charts/muestraPunto",
+        url: "<?php echo Yii::app()->baseUrl?>/charts/muestraPuntoWS",
         dataType:"json",
         type: "post",
         success: function(point) {
@@ -402,8 +439,7 @@ function requestData() {
 
             // add the point
             //series.addPoint([x, y], true, true);
-            var date = new Date(point.tempbd*1000);
-            chart.series[0].addPoint([point.time, point.temp], true, shift);
+            chart.series[0].addPoint([point.time, (new Date(point.temp)).getTime()], true, shift);
             
             // call it again after one second
             setTimeout(requestData, 5000);    

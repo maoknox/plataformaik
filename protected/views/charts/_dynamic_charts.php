@@ -447,16 +447,12 @@ $(function () {
                                 dataType:"json",
                                 type: "post",
                                 //beforeSend:function (){Loading.show();},
-                                success: function(dataPointJson){  
-                                    //if(timeTemp!==dataPointJson.time){
+                                success: function(dataPointJson){ 
                                         var x = dataPointJson.time, // current time
                                         y = dataPointJson.temp;
                                         series.addPoint([x, y], true, true);
                                         timeTemp=dataPointJson.time;
-//                                    }
-//                                    else{
-//                                        
-//                                    }
+//                                    
                                     
                                     console.debug(dataPointJson);
                                 },
@@ -466,6 +462,11 @@ $(function () {
                             });
                               
                         }, 15000);
+//                        setInterval(function () {
+//                            var x = (new Date()).getTime(), // current time
+//                                y = Math.random();
+//                            series.addPoint([x, y], true, true);
+//                        }, 1000);
                     }
                 }
             },
@@ -513,27 +514,27 @@ $(function () {
                         type: "post",
                         async:false,
                         //beforeSend:function (){Loading.show();},
-                        success: function(dataJson){  
+                        success: function(dataJson){
                             timeTemp=dataJson.punto;
+                            
                            $.each(dataJson.puntos,function(key,value){ 
-                                
+                                var d=new Date(value.time);
                                 data.push({
-                                    //x: time + i * 1000,
-                                    x: value.time,
+                                    x: (d).getTime(),
                                     y: value.temp
                                 });
-                                i++;
                            });
-                           
                         },
                         error:function (err){
                             console.debug(err);
                         }
-                    });  //console.debug(data);
+                    }); 
                            return data;
 //                    for (i = -19; i <= 0; i += 1) {
+//                        var dTime=time + i * 1000;
+//                        console.debug(new Date(dTime));
 //                                data.push({
-//                                    x: time + i * 1000,
+//                                    x:dTime,
 //                                    y: Math.random()
 //                                });
 //                            }

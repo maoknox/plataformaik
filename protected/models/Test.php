@@ -257,12 +257,19 @@ class Test extends CActiveRecord
          */
         public function consultaHistoricoTemperaturaWS(){
             $connect=Yii::app()->db;
-            $sql="select date_test, temperatura from test where id_device_test='020' order by date_test desc limit 5";
+            $sql="select date_test,trama_datos from test where id_device_test='020' order by date_test desc limit 5";
             $query=$connect->createCommand($sql);
             $read=$query->query();
             $res=$read->readAll();
             $read->close();
-            return $res;
+            $datos=[];
+            if(!empty($res)){
+                foreach($res as $key=>$datoTemp){
+                    $trama=  explode(",", $datoTemp['trama_datos']);
+                    $datos[$key]=array('temperatura'=>$trama[9],'date_test'=>$datoTemp['date_test']);
+                }
+            }
+            return $datos;
         }
         /*
          * Consulta última medición de temperatura de estación metereológica
