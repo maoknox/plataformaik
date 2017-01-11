@@ -283,5 +283,23 @@ class Test extends CActiveRecord
             $read->close();
             return $res;
         }
+        public function consultaHistoricos($fechainicial,$fechafinal,$variable){
+            $connect=Yii::app()->db;
+            $sql="select date_test,trama_datos from test where id_device_test='020' and date_test >=:fechainicial and date_test <=:fechafinal order by date_test desc ";
+            $query=$connect->createCommand($sql);
+            $query->bindParam(":fechainicial", $fechainicial);
+            $query->bindParam(":fechafinal", $fechafinal);
+            $read=$query->query();
+            $res=$read->readAll();
+            $read->close();
+            $datos=[];
+            if(!empty($res)){
+                foreach($res as $key=>$datoTemp){
+                    $trama=  explode(",", $datoTemp['trama_datos']);
+                    $datos[$key]=array('magnitud'=>$trama[$variable],'date_test'=>$datoTemp['date_test']);
+                }
+            }
+            return $datos;
+        }
         
 }

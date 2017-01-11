@@ -15,7 +15,7 @@
                 <header class="page-header">
                     </br>
                     
-                        Módulo Meteorología-Central
+                        Módulo Meteorología-Estación metereológica
                     
                 </header>
             </div>
@@ -28,15 +28,18 @@
                     </ul>
                     <ul class="nav nav-tabs">
                         <li>
-                            <a href="#"><i class="icon-home"></i>Geozonas</a>
+                            <?php 
+                                echo CHtml::link('Gráficos', '#', array(
+                                    'onclick'=>'$("#jobDialog").dialog("open"); return false;',
+                                 ));
+                            ?>
                         </li>
-                        <li><a href="#">Estadísticas</a></li>
                     </ul>
                 </div>
             </div>
     </div>
 </section>
-<div class="container">    
+<div class="container">   
     <div class="row">
         <div class="span4">
             <div class="box">
@@ -115,6 +118,21 @@
         </div>
     </div>
 </div>
+ <?php 
+$this->beginWidget('zii.widgets.jui.CJuiDialog',array(
+                'id'=>'jobDialog',
+                'options'=>array(
+                    'title'=>Yii::t('job','Consultar históricos'),
+                    'autoOpen'=>false,
+                    'modal'=>'false',
+                    'width'=>'auto',
+                    'height'=>'600',
+                    'zIndex'=> 10000,
+                ),
+                ));
+echo $this->renderPartial('_graficosws', false, true); ?>
+<?php $this->endWidget('zii.widgets.jui.CJuiDialog');
+?>
 <script>
     
     $(function () {
@@ -307,7 +325,7 @@
                         var f=parseInt(c0.slice(1),16),t=parseInt(c1.slice(1),16),R1=f>>16,G1=f>>8&0x00FF,B1=f&0x0000FF,R2=t>>16,G2=t>>8&0x00FF,B2=t&0x0000FF;
                         return "#"+(0x1000000+(Math.round((R2-R1)*p)+R1)*0x10000+(Math.round((G2-G1)*p)+G1)*0x100+(Math.round((B2-B1)*p)+B1)).toString(16).slice(1);
             }
-        
+            var texto ='Temperatura vs tiempo';
             
             $('#temperatura').highcharts({
                 chart: {
@@ -339,7 +357,7 @@
                                     }
                                 });
 
-                            }, 15000);
+                            }, 30000);
     //                        setInterval(function () {
     //                            var x = (new Date()).getTime(), // current time
     //                                y = Math.random();
@@ -349,7 +367,7 @@
                     }
                 },
                 title: {
-                    text: 'Temperatura vs Tiempo'
+                    text: texto
                 },
                 xAxis: {
                     type: 'datetime',
@@ -376,7 +394,7 @@
                     enabled: true
                 },
                 exporting: {
-                    enabled: false
+                    enabled: true
                 },
                 series: [{
                     name: 'Temperatura vs Tiempo',

@@ -1,9 +1,6 @@
 <?php /* @var $this Controller */ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<?php /* @var $this Controller */ ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
@@ -27,6 +24,13 @@
             <?php  endif?>
         
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+        <?php
+            Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/notifIt.css');
+            Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/notifIt.min.js');
+            Yii::app()->clientScript->registerScriptFile("http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js");
+            Yii::app()->clientScript->registerScriptFile("http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/additional-methods.min.js");
+
+        ?>
 </head>
 
     <body>
@@ -92,8 +96,8 @@
                 </div>
             </div>
         </footer>
-        
-        <script src="<?php echo Yii::app()->baseUrl; ?>/js/bootstrap/bootstrap-collapse.js" type="text/javascript" ></script>
-      
+        <?php
+            Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl."/js/bootstrap/bootstrap-collapse.js");
+        ?>
 	</body>
 </html>

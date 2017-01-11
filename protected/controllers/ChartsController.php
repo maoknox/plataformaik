@@ -330,4 +330,36 @@ class ChartsController extends Controller
             $time=strtotime ($dataTemperatura["date_test"])*1000;
             echo CJSON::encode(array("temp"=>(double)$dataTemperatura["temperatura"],"time"=>$time));
         }
+        /*
+         * Muestra históricos según varables seleccionadas
+         */
+        public function actionMuestraHistorico(){
+            $post=Yii::app()->request->getPost("ConsHist");
+            $modelTest=  Test::model();
+            $variable="";
+            switch($post["variablesSelect"]){
+                case 1;
+                    $variable=9;
+                    break;
+                case 2:
+                    $variable=10;
+                    break;
+                case 3:
+                    $variable=11;
+                    break;
+                case 4:
+                    $variable=6;
+                    break;
+                case 5:
+                    $variable=7;
+                    break;
+            }
+            $datosFechas=$modelTest->consultaHistoricos($post["fecha_inicial"],$post["fecha_final"],$variable);
+            usort($datosFechas,array($this, "ordenaFechaAsc"));
+            foreach($datosFechas as $pk=>$datosFecha){
+                $time=strtotime( $datosFecha["date_test"] )*1000;                             
+                $data[$pk]=array("magnitud"=>(double)$datosFecha["magnitud"],"time"=>$time,"tempbd"=>$datosFecha["date_test"]);
+            }
+            echo CJSON::encode(array("datos"=>$data));
+        }
 }
