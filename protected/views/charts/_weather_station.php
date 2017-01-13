@@ -133,6 +133,8 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog',array(
 echo $this->renderPartial('_graficosws', false, true); ?>
 <?php $this->endWidget('zii.widgets.jui.CJuiDialog');
 ?>
+
+<div id="downloadFile"></div>
 <script>
     
     $(function () {
