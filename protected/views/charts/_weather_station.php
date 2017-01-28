@@ -23,7 +23,7 @@
                 <div class="span9">
                     <ul class="nav nav-pills">
                         <li>
-                            <a href="<?php echo Yii::app()->baseUrl; ?>""><i class="icon-home icon-large"></i></a>
+                            <a href="<?php echo Yii::app()->baseUrl; ?>"><i class="icon-home icon-large"></i></a>
                         </li>
                     </ul>
                     <ul class="nav nav-tabs">
@@ -31,6 +31,13 @@
                             <?php 
                                 echo CHtml::link('Gráficos', '#', array(
                                     'onclick'=>'$("#jobDialog").dialog("open"); return false;',
+                                 ));
+                            ?>
+                        </li>
+                        <li>
+                            <?php 
+                                echo CHtml::link('Estadísticas', '#', array(
+                                    'onclick'=>'$("#estadisticaWs").dialog("open"); return false;',
                                  ));
                             ?>
                         </li>
@@ -118,22 +125,34 @@
         </div>
     </div>
 </div>
- <?php 
-$this->beginWidget('zii.widgets.jui.CJuiDialog',array(
-                'id'=>'jobDialog',
-                'options'=>array(
-                    'title'=>Yii::t('job','Consultar históricos'),
-                    'autoOpen'=>false,
-                    'modal'=>'false',
-                    'width'=>'auto',
-                    'height'=>'600',
-                    'zIndex'=> 10000,
-                ),
-                ));
+<?php 
+    $this->beginWidget('zii.widgets.jui.CJuiDialog',array(
+        'id'=>'jobDialog',
+        'options'=>array(
+            'title'=>Yii::t('job','Consultar históricos'),
+            'autoOpen'=>false,
+            'modal'=>'false',
+            'width'=>'auto',
+            'height'=>'600',
+            'zIndex'=> 10000,
+        ),
+    ));
 echo $this->renderPartial('_graficosws', false, true); ?>
-<?php $this->endWidget('zii.widgets.jui.CJuiDialog');
-?>
-
+<?php $this->endWidget('zii.widgets.jui.CJuiDialog');?>
+<?php 
+    $this->beginWidget('zii.widgets.jui.CJuiDialog',array(
+        'id'=>'estadisticaWs',
+        'options'=>array(
+            'title'=>Yii::t('job','Consultar históricos'),
+            'autoOpen'=>false,
+            'modal'=>'false',
+            'width'=>'auto',
+            'height'=>'600',
+            'zIndex'=> 10000,
+        ),
+    ));
+echo $this->renderPartial('_estadisticaWs',array("args"=>'args'), true); ?>
+<?php $this->endWidget('zii.widgets.jui.CJuiDialog');?>
 <div id="downloadFile"></div>
 <script>
     
