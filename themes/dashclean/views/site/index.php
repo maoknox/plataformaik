@@ -47,7 +47,7 @@
        
         
             <div id="freewall" class="free-wall" style="max-width: 100%">
-                <div class="brick">
+<!--                <div class="brick">
                     <div  style="text-align: center; ">
                         <div class="span6">
                             <div class="box">
@@ -57,13 +57,13 @@
                                 </div>
                                 <div class="box-content">
                                     <div class="btn-group-box">
-                                        <button class="btn-box" onclick="location.href='<?php echo Yii::app()->baseUrl; ?>/avl/searchVehicle'"><i class="icon-road icon-large"></i><br/>Mis vehículos</button>
+                                        <button class="btn-box" onclick="location.href='<?php //echo Yii::app()->baseUrl; ?>/avl/searchVehicle'"><i class="icon-road icon-large"></i><br/>Mis vehículos</button>
                                     </div>
                                 </div>
                          </div>
                      </div>
                    </div>
-                </div>
+                </div>-->
                 <div class="brick">
                     <div  style="text-align: center; ">
                         <div class="span6">
@@ -74,7 +74,7 @@
                                 </div>
                                 <div class="box-content">
                                     <div class="btn-group-box">
-                                        <button class="btn-box" onclick="location.href='<?php echo Yii::app()->baseUrl; ?>/charts'"><i class="icon-dashboard icon-large"></i> Telecontrol</button>
+                                    <!--<button class="btn-box" onclick="location.href='<?php http://plataformaik.herokuapp.com/echo Yii::app()->baseUrl; ?>/charts'"><i class="icon-dashboard icon-large"></i> Telecontrol</button>-->
                                         <!--<button class="btn-box" onclick="location.href='<?php // echo Yii::app()->baseUrl; ?>/charts/telecontroli'"><i class="icon-dashboard icon-large"></i> Telecontrol-1</button>-->
                                         <button class="btn-box" onclick="location.href='<?php echo Yii::app()->baseUrl; ?>/charts/weatherstation'"><i class="icon-dashboard icon-large"></i> Telemedición</button>
                                     </div>
