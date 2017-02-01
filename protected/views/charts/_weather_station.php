@@ -34,13 +34,13 @@
                                  ));
                             ?>
                         </li>
-                        <li>
+<!--                        <li>
                             <?php 
-                                echo CHtml::link('Estadísticas', '#', array(
-                                    'onclick'=>'$("#estadisticaWs").dialog("open"); return false;',
-                                 ));
+//                                echo CHtml::link('Estadísticas', '#', array(
+//                                    'onclick'=>'$("#estadisticaWs").dialog("open"); return false;',
+//                                 ));
                             ?>
-                        </li>
+                        </li>-->
                     </ul>
                 </div>
             </div>
